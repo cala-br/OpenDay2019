@@ -9,7 +9,7 @@ The MQTT topics used for the communication.
 
 | Topic | Description |
 | ----- | ----------- |
-| rooms/room_name | [room_name]() will represent each separate room, and each room will contain its own messages |
+| chatroom | The topic that will contain all the messages |
 
 
 # Messages format
@@ -29,7 +29,7 @@ The MQTT topics used for the communication.
  * Publishing
  */ 
 mqttClient.publish(
-    'rooms/OpenDay',
+    'chatroom',
     {
         'username' : 'Stephen',
         'contents' : 'hello',
