@@ -48,8 +48,6 @@ mqttClient.publish(
  */
 function onPublishReceived(topic, message)
 {
-    // Displaying/pushing the message
-    // into the right chatroom
-    chatrooms[topic].push(message);
+    display(message);
 }
 ``` 
