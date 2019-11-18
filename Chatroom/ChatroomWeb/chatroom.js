@@ -11,17 +11,24 @@ $(document).ready(() => {
         onSuccess: () => {
             client.subscribe("messori/fermi/chatroom");
             client.onMessageArrived = (message) => {
+                
                 let data = JSON.parse(message.payloadString);
 
+                let sender = "";
+                if(lastReceived != data.username)
+                    sender = `<span class="card-title">${data.username}</span>`
+                
+                lastReceived = data.username
                 let position = data.username == username ? "right" : "left";
+
                 $("#messagesContainer").html(
                     $("#messagesContainer").html() +
-                    `<div class="row">
+                    `<div class="row" style="margin-bottom: 0px">
                         <div class="col ${position}" style="max-width: 60%; min-width: 20%;">
                             <div class="card blue-grey darken-1">
                                 <div class="white-text" style="padding: 10px">
-                                    <span class="card-title">${data.username}</span>
-                                    <p style="word-break: break-all;">${data.contents.replace(/\n/gi, "<br>")}</p>
+                                    ${sender}
+                                    <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
                                     <span class="right" style="font-size:11px; margin-top: -8px;">
                                         ${data.timestamp}
                                         <i class="material-icons" style="font-size:11px;">check</i>
