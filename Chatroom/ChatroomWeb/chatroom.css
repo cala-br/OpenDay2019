@@ -1,0 +1,43 @@
+body {
+    background-color: #9494949e;
+}
+
+footer {
+    position: fixed;
+    max-height: 136px;
+    background-color: #5a5a5a;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+#messageSendFooter {
+    margin-bottom: 0px;
+}
+
+#messageSendFooter .input-field {
+    margin-left: 8px;
+    margin-top: 8px;
+    padding: 0px 1.75rem;
+    background: #66999990;
+    border-radius: 16px;
+    overflow-y: scroll;
+    max-height: 120px;  
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+#messageSendFooter ::-webkit-scrollbar { display: none; }
+
+#messageSendFooter .material-icons {
+    font-size: 28px; 
+    margin-top: 18px; 
+    margin-right:12px;
+    user-select: none;
+    cursor: pointer;
+}
+
+#messagesContainer {
+    margin-bottom: 64px !important;
+}

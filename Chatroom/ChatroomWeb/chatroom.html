@@ -3,15 +3,66 @@
 
     <!--#region Head-->
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script> 
+        
+        <!--#region Materialize-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--#endregion-->
+
+        <script src="chatroom.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="chatroom.css">
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <title>Chatroom</title>
     </head>
     <!--#endregion-->
 
     <!--#region Body-->
     <body>
-        
+
+        <div class="row" id="messagesContainer">
+        </div>
+
+        <!--#region Footer-->
+        <footer>
+            <div>
+                <div class="row" id="messageSendFooter">
+                    <div class="input-field col s10">
+                        <textarea class="materialize-textarea" 
+                            placeholder="Message" 
+                            id="messageSendField" 
+                            type="text" 
+                            onkeydown="doSendMessage()"></textarea>
+                    </div>
+                    <div>
+                        <i class="material-icons right" onclick="sendMessage();">send</i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--#endregion-->
+
+
+        <!--#region Modal-->
+        <div id="usernameModal" class="modal">
+            <div class="modal-content">
+                <h4>Scegli uno username</h4>
+                <div class="input-field col s10">
+                    <input style="width: 35%;" placeholder="Username" id="usernameField" type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="waves-effect waves-green btn-flat"
+                    onclick="selectUsername();">Conferma</a>
+            </div>
+        </div>
+        <!--#endregion-->
+
     </body>
     <!--#endregion--->
 
