@@ -10,6 +10,7 @@ The MQTT topics used for the communication.
 | Topic | Description |
 | ----- | ----------- |
 | chatroom | The topic that will contain all the messages |
+| chatroom/usernames | The topic that will contain the list of used usernames |
 
 
 # Messages format
