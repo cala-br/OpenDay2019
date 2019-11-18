@@ -1,11 +1,12 @@
-var client = null;
-var username = null;
+var client       = null;
+var username     = null;
+var lastReceived = null;
 
 $(document).ready(() => {
-    let host = "broker.hivemq.com";
-    let port = 8000;
+    let host = "localhost";
+    let port = 16001;
 
-    client = new Paho.MQTT.Client(host, port, "broker");
+    client = new Paho.MQTT.Client(host, port, "");
     client.connect({
         onSuccess: () => {
             client.subscribe("messori/fermi/chatroom");
