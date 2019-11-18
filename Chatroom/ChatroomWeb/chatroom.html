@@ -50,11 +50,12 @@
 
         <!--#region Modal-->
         <div id="usernameModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content" style="padding-bottom: 0px;">
                 <h4>Scegli uno username</h4>
                 <div class="input-field col s10">
                     <input style="width: 35%;" placeholder="Username" id="usernameField" type="text">
                 </div>
+                <p style="display: none; color: red" id="usernameErrorLabel">Username già in uso</p>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="waves-effect waves-green btn-flat"

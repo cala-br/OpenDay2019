@@ -1,12 +1,13 @@
+const host = "broker.hivemq.com";
+const port = 8000;
+
 var client       = null;
 var username     = null;
 var lastReceived = null;
 
 $(document).ready(() => {
-    let host = "localhost";
-    let port = 16001;
-
     client = new Paho.MQTT.Client(host, port, "");
+
     client.connect({
         onSuccess: () => {
             client.subscribe("messori/fermi/chatroom");
@@ -89,10 +90,58 @@ function selectUsername()
 {
     let name = $("#usernameField").val();
 
-    if(name)
-    {
-        username = name;
-        $("#usernameModal").modal('close');
-        $("body").css("overflow", "");
-    }
+    let c = new Paho.MQTT.Client(host, port, "");
+    let usedUsernames = [];
+
+    c.connect({
+        onSuccess: () => {
+            c.subscribe("messori/fermi/chatroom/usernames");
+            c.onMessageArrived = (message) => {
+                usedUsernames = JSON.parse(message.payloadString);
+
+                if(name && !usedUsernames.includes(name))
+                {
+                    username = name;
+                    $("#usernameModal").modal('close');
+                    $("body").css("overflow", "");
+                    
+                    usedUsernames.push(name); 
+                    client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
+                    
+                    console.log(usedUsernames);
+                    c.unsubscribe();
+                }
+                else
+                    $("#usernameErrorLabel").css("display", "");
+            }
+        }
+    });
 }
+
+// This will free the username when the page is closed or refreshed
+$(window).on("beforeunload", (e) => {
+    let c = new Paho.MQTT.Client(host, port, "");
+    let usedUsernames = [];
+
+    if(username)
+    {
+        c.connect({
+            onSuccess: () => {
+                c.subscribe("messori/fermi/chatroom/usernames");
+                c.onMessageArrived = (message) => {
+                    usedUsernames = JSON.parse(message.payloadString);
+
+                    usedUsernames.pop(username);
+                    client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
+                    
+                    console.log(usedUsernames);
+                    e.preventDefault();
+                    c.unsubscribe();
+                }
+            }
+        });
+    }
+    e.returnValue = '';
+
+    return null;
+});

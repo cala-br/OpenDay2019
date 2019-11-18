@@ -36,6 +36,7 @@ footer {
     margin-right:12px;
     user-select: none;
     cursor: pointer;
+    color: white;   
 }
 
 #messagesContainer {
