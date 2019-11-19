@@ -119,29 +119,14 @@ function selectUsername()
 }
 
 // This will free the username when the page is closed or refreshed
-$(window).on("beforeunload", (e) => {
-    let c = new Paho.MQTT.Client(host, port, "");
-    let usedUsernames = [];
-
+window.addEventListener("unload", (e) => 
+{    
     if(username)
     {
-        c.connect({
-            onSuccess: () => {
-                c.subscribe("messori/fermi/chatroom/usernames");
-                c.onMessageArrived = (message) => {
-                    usedUsernames = JSON.parse(message.payloadString);
-
-                    usedUsernames.pop(username);
-                    client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
-                    
-                    console.log(usedUsernames);
-                    e.preventDefault();
-                    c.unsubscribe();
-                }
-            }
-        });
+        navigator.sendBeacon(
+            'http://mosquitto-helper-server.local:40000', 
+            username)
     }
-    e.returnValue = '';
 
-    return null;
+    return false;
 });
