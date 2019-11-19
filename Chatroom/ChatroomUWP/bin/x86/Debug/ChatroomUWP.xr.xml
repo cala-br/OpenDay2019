@@ -56,7 +56,6 @@
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Background" />
-      <RootProperty Name="CornerRadius" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="Visibility" />
@@ -104,7 +103,7 @@
       <RootProperty Name="Username" />
       <RootProperty Name="Body" />
       <RootProperty Name="Timestamp" />
-      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Position" />
       <RootProperty Name="HeaderVisible" />
     </RootType>
     <RootType FullName="ChatroomUWP.Pages.HomePage" />

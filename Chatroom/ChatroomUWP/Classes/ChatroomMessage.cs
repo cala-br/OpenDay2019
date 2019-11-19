@@ -2,7 +2,7 @@
 
 namespace ChatroomUWP.Classes
 {
-    class ChatroomMessage
+    public class ChatroomMessage
     {
         public string Username { get; set; }
         public string Contents { get; set; }

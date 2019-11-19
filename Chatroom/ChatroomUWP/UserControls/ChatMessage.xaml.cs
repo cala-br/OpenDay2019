@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatroomUWP.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ChatroomUWP.UserControls
 {
+    public enum Position
+    {
+        Left, 
+        Right
+    };
+
     /// <summary>
     /// Represents a chat message.
     /// </summary>
@@ -48,6 +55,37 @@ namespace ChatroomUWP.UserControls
             set;
         } = true;
 
+        private Position _position;
+        /// <summary>
+        /// The control's position.
+        /// </summary>
+        public Position Position
+        {
+            get => _position;
+            set
+            {
+                _position = value;
+
+                HorizontalAlignment =
+                    value == Position.Left
+                    ? HorizontalAlignment.Left
+                    : HorizontalAlignment.Right;
+
+                _contentGrid.CornerRadius = value switch
+                {
+                    Position.Left => new CornerRadius(12)
+                    {
+                        TopLeft = 0
+                    },
+                    Position.Right => new CornerRadius(12)
+                    {
+                        TopRight = 0
+                    },
+                    _ => throw new Exception("Wrong position")
+                };
+            }
+        }
+
         #endregion
 
 
@@ -56,6 +94,20 @@ namespace ChatroomUWP.UserControls
         {
             InitializeComponent();
         }
+        #endregion
+
+
+        #region Conversions
+
+        public static implicit operator ChatMessage(ChatroomMessage message) => new ChatMessage
+        {
+            Username  = message.Username,
+            Body      = message.Contents,
+            Timestamp = message
+                .Timestamp
+                .ToShortTimeString()
+        };
+
         #endregion
     }
 }

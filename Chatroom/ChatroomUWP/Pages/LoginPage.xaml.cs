@@ -30,6 +30,7 @@ namespace ChatroomUWP.Pages
 
         #endregion
 
+
         #region Constructor
         public LoginPage()
         {

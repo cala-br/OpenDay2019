@@ -40,14 +40,14 @@
                     Username="cala_br"
                     Body="Hello world"
                     Timestamp="23:26"
-                    HorizontalAlignment="Left"/>
+                    Position="Left"/>
 
                 <usercontrols:ChatMessage
                     Username="cala_br"
                     Body="Hello world"
                     Timestamp="23:26"
                     HeaderVisible="False"
-                    HorizontalAlignment="Left"/>
+                    Position="Left"/>
             </StackPanel>
             
         </ScrollViewer>

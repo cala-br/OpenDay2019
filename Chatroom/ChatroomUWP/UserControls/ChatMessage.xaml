@@ -12,11 +12,11 @@
     d:DesignWidth="400">
 
     <Grid 
+        x:Name="_contentGrid"
         Background="{ThemeResource SystemControlAcrylicElementBrush}"
-        CornerRadius="12"
-        Margin="12 4"
         BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"
-        BorderThickness="2">
+        BorderThickness="2"
+        Margin="12 4">
 
         <!--#region Rows-->
         <Grid.RowDefinitions>
@@ -60,6 +60,6 @@
             Margin="12 4"
             HorizontalAlignment="Right"
             Text="{x:Bind Timestamp}"/>
-
+            
     </Grid>
 </UserControl>

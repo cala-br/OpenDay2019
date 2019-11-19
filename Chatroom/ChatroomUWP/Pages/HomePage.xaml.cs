@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,6 +38,28 @@ namespace ChatroomUWP.Pages
         public HomePage()
         {
             InitializeComponent();
+
+            _client.MessageReceived += MessageReceivedHandler;
+        }
+        #endregion
+
+
+        #region Message received
+        /// <summary>
+        /// Handles the received messages.
+        /// </summary>
+        private async void MessageReceivedHandler(string topic, ChatroomMessage message)
+        {
+            await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                ChatMessage cMsg = message;
+                cMsg.Position =
+                    message.Username == _client.Username
+                    ? Position.Right
+                    : Position.Left;
+
+                DisplayChatMessage(cMsg);
+            });
         }
         #endregion
 
@@ -56,23 +79,21 @@ namespace ChatroomUWP.Pages
         /// <summary>
         /// Sends the message.
         /// </summary>
-        private void SendMessage(object sender, RoutedEventArgs e)
+        private async void SendMessage(object sender, RoutedEventArgs e)
         {
             var text = _sendBox.Text;
 
             if (string.IsNullOrWhiteSpace(text))
                 return;
 
-            DisplayChatMessage(new ChatMessage
+            var msg = new ChatroomMessage
             {
-                Username  = "cala",
-                Body      = text,
-                Timestamp = DateTime
-                        .Now
-                        .ToShortTimeString(),
+                Contents = text,
+                Timestamp = DateTime.Now
+            };
 
-                HorizontalAlignment = HorizontalAlignment.Right
-            });
+            await _client.PublishAsync(
+                ChatroomClient.GENERAL_ROOM_TOPIC, msg);
 
             _sendBox.Text = string.Empty;
         }

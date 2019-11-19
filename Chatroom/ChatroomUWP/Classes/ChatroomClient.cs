@@ -3,6 +3,7 @@ using MQTTnet.Client;
 using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
+using MQTTnet.Client.Publishing;
 using MQTTnet.Client.Receiving;
 using MQTTnet.Client.Subscribing;
 using MQTTnet.Protocol;
@@ -58,6 +59,11 @@ namespace ChatroomUWP.Classes
             ? false
             : _mqttClient.IsConnected;
 
+        /// <summary>
+        /// The client's username.
+        /// </summary>
+        public string Username => _clientId;
+
         #endregion
 
         #region Consts/readonly fields
@@ -70,6 +76,9 @@ namespace ChatroomUWP.Classes
 
         public const string
             USERNAMES_TOPIC = "chatroom/usernames";
+
+        public const string
+            GENERAL_ROOM_TOPIC = "chatroom/";
 
         #endregion
 
@@ -126,6 +135,7 @@ namespace ChatroomUWP.Classes
 
             _mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithClientId(_clientId)
+                .WithCommunicationTimeout(TimeSpan.FromSeconds(10))
                 .WithTcpServer(SERVER_HOSTNAME)
                 .Build();
 
@@ -152,7 +162,7 @@ namespace ChatroomUWP.Classes
                 .ContinueWith(async _ => // Subscribing
                 {
                     var subOpts = new MqttClientSubscribeOptionsBuilder()
-                        .WithTopicFilter( "chatroom/",            retainAsPublished: true)
+                        .WithTopicFilter(GENERAL_ROOM_TOPIC,      retainAsPublished: true)
                         .WithTopicFilter($"chatroom/{_clientId}", retainAsPublished: true)
                         .WithTopicFilter(USERNAMES_TOPIC,         retainAsPublished: true)
                         .Build();
@@ -247,6 +257,31 @@ namespace ChatroomUWP.Classes
             });
         }
         #endregion
+
+
+        #region Publish async
+        /// <summary>
+        /// Publishes a message asynchronously.
+        /// </summary>
+        public async Task<MqttClientPublishResult> PublishAsync(
+            string          topic, 
+            ChatroomMessage message)
+        {
+            message.Username = _clientId;
+            return await _mqttClient.PublishAsync(new MqttApplicationMessage
+            {
+                Topic   = topic,
+                Payload = JsonSerializer
+                    .SerializeToUtf8Bytes(message)
+            });
+        }
+
+        public async Task<MqttClientPublishResult> PublishAsync(MqttApplicationMessage message)
+        {
+            return await _mqttClient.PublishAsync(message);
+        }
+        #endregion
+
 
         #region IDisposable Support
         private bool _disposedValue = false; 

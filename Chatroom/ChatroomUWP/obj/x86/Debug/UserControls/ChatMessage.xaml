@@ -11,12 +11,12 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid 
+    <Grid x:ConnectionId='2' 
+        x:Name="_contentGrid"
         Background="{ThemeResource SystemControlAcrylicElementBrush}"
-        CornerRadius="12"
-        Margin="12 4"
         BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"
-        BorderThickness="2">
+        BorderThickness="2"
+        Margin="12 4">
 
         <!--#region Rows-->
         <Grid.RowDefinitions>
@@ -28,11 +28,11 @@
 
 
         <!--#region Username-->
-        <Grid x:ConnectionId='2' 
+        <Grid x:ConnectionId='3' 
                                                
             Margin="8 0"
             HorizontalAlignment="Left">
-            <TextBlock x:ConnectionId='5'
+            <TextBlock x:ConnectionId='6'
                 x:Name="_usernameBlock"
                 Style="{ThemeResource SubtitleTextBlockStyle}"
                 HorizontalAlignment="Left"
@@ -45,14 +45,14 @@
         <!--#endregion-->
 
         <!--Body-->
-        <TextBlock x:ConnectionId='3'
+        <TextBlock x:ConnectionId='4'
             Grid.Row="1"
             Margin="8 4"
             TextWrapping="Wrap"
                                 />
         
         <!--Timestamp-->
-        <TextBlock x:ConnectionId='4'
+        <TextBlock x:ConnectionId='5'
             Grid.Row="2"
             Opacity="0.8"
             FontStyle="Italic"
@@ -60,7 +60,7 @@
             Margin="12 4"
             HorizontalAlignment="Right"
                                      />
-
+            
     </Grid>
 </UserControl>
 
