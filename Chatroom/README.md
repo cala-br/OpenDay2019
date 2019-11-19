@@ -9,28 +9,59 @@ The MQTT topics used for the communication.
 
 | Topic | Description |
 | ----- | ----------- |
-| chatroom | The topic that will contain all the messages |
-| chatroom/usernames | The topic that will contain the list of used usernames |
+| [chatroom/](###Normal-message) | The topic that will contain all the messages |
+| [chatroom/usernames](###Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. |
+| [chatroom/recipient](###Direct-messages) | The topic used when sending direct messages. /username is the recipient's username. |
 
 
 # Messages format
 
+### Normal message 
 ```json
-{
-    "username"  : "",
-    "contents"  : "",
-    "timestamp" : ""
-}
+mqttClient.publish(
+    "chatroom/",
+    {
+        "username"  : "",
+        "contents"  : "",
+        "timestamp" : ""
+    });
 ```
 
-### Example:
+### Username registration message 
+```json
+mqttClient.publish(
+    "chatroom/usernames",
+    [
+        "username1", "usernameN"
+    ]);
+```
+
+### Direct messages
+```json
+mqttClient.publish(
+    "chatroom/recipient",
+    {
+        "username"  : "", 
+        "contents"  : "",
+        "timestamp" : ""
+    });
+```
+
+
+# Examples
+
+_*All the examples are written in pseudocode_
+
+### Publishing message
 
 ```js
 /**
  * Publishing
+ * 
+ * For direct messages, the topic will be 'chatroom/recipient'.
  */ 
 mqttClient.publish(
-    'chatroom',
+    'chatroom/',
     {
         'username' : 'Stephen',
         'contents' : 'hello',
@@ -52,3 +83,80 @@ function onPublishReceived(topic, message)
     display(message);
 }
 ``` 
+
+### Direct chat
+```js
+/**
+ * Subscribes the client to its own topic,
+ * in order to receive direct messages.
+ */
+function initOwnTopic()
+{
+    const OWN_TOPIC = `username/${ownUsername}`;
+
+    mqttClient
+        .subscribe(OWN_TOPIC);
+        .onPublishReceived = (topic, msg) =>
+        {
+            if (topic == OWN_TOPIC)
+            {
+                if (!privateChatExists(msg.username))
+                    createPrivateChat(msg.username);
+                    
+                showPrivateMessage(msg);
+            }
+        };
+}
+```
+
+### Checking for username
+
+```js
+const USERNAMES_TOPIC = "chatroom/usernames";
+
+/**
+ * Checks if the username is taken or not.
+ * 
+ * If it is, the client must show an error and ask
+ * for another, otherwise it must publish back the usernames
+ * with its own added to the list.
+ */
+function checkIfUsernameTaken()
+{
+    mqttClient.onPublishReceived = (topic, msg) =>
+    {
+        if (topic == USERNAMES_TOPIC)
+        {
+            let usernames = JSON.parse(msg);
+
+            // If the username is already
+            // registered
+            let isUsernameTaken = 
+                usernames.find(username)
+
+            if (isUsernameTaken)
+            {
+                usernameTakenError();
+                return;
+            }
+
+            usernames.push(username);
+
+            // Unsubscribing to avoid
+            // recursion
+            mqttClient.unsubscribe(USERNAMES_TOPIC);
+
+            // Publishing back the updated
+            // usernames list
+            mqttClient.publish(
+            {
+                topic  : USERNAMES_TOPIC,
+                message: JSON.encode(usernames),
+                retain : true
+            });
+        }
+    }
+
+    mqttClient.subscribe(USERNAMES_TOPIC);
+}
+```
