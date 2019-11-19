@@ -17,7 +17,7 @@ The MQTT topics used for the communication.
 # Messages format
 
 ### Normal message 
-```json
+```js
 mqttClient.publish(
     "chatroom/",
     {
@@ -28,7 +28,7 @@ mqttClient.publish(
 ```
 
 ### Username registration message 
-```json
+```js
 mqttClient.publish(
     "chatroom/usernames",
     [
@@ -37,9 +37,9 @@ mqttClient.publish(
 ```
 
 ### Direct messages
-```json
+```js
 mqttClient.publish(
-    "chatroom/private-messages/recipient",
+    `chatroom/private-messages/${recipient}`,
     {
         "username"  : "", 
         "contents"  : "",
@@ -92,7 +92,8 @@ function onPublishReceived(topic, message)
  */
 function initOwnTopic()
 {
-    const OWN_TOPIC = `username/${ownUsername}`;
+    const OWN_TOPIC = 
+        `chatroom/private-messages/${ownUsername}`;
 
     mqttClient
         .subscribe(OWN_TOPIC);
