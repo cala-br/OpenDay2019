@@ -37,9 +37,17 @@
       "frameworks": {
         "uap10.0.18362": {
           "dependencies": {
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[3.0.8, )"
+            },
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
               "version": "[6.2.9, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[4.6.0, )"
             }
           },
           "imports": [

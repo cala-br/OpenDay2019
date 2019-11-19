@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="ChatroomUWP.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChatroomUWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:usercontrols="using:ChatroomUWP.UserControls"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <!--#region Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        
+        <!--#region Chat messages-->
+        <ScrollViewer 
+            VerticalScrollBarVisibility="Hidden"
+            VerticalScrollMode="Enabled"
+            Margin="12 12 12 0"
+            Padding="4 8"
+            Background="{ThemeResource SystemControlAcrylicElementBrush}"
+            BorderThickness="2"
+            BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}">
+            <StackPanel x:Name="_chatMessages">
+            
+                <!--#region Transitions-->
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition/>
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+                <!--#endregion-->
+
+                <usercontrols:ChatMessage
+                    Username="cala_br"
+                    Body="Hello world"
+                    Timestamp="23:26"
+                    HorizontalAlignment="Left"/>
+
+                <usercontrols:ChatMessage
+                    Username="cala_br"
+                    Body="Hello world"
+                    Timestamp="23:26"
+                    HeaderVisible="False"
+                    HorizontalAlignment="Left"/>
+            </StackPanel>
+            
+        </ScrollViewer>
+        <!--#endregion-->
+        
+        <!--#region Send box-->
+        <Grid 
+            Grid.Row="1"
+            Margin="12"
+            MaxHeight="128">
+
+            <!--#region Cols-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+
+            <!--Send box-->
+            <TextBox
+                x:Name="_sendBox"
+                KeyUp="SendBoxKeyPressed"
+                CornerRadius="12 0 0 12"
+                TextWrapping="Wrap"
+                BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"/>
+
+            <!--#region Send button-->
+            <Button
+                Click="SendMessage"
+                Grid.Column="1"
+                Margin="-2 0 0 0"
+                VerticalAlignment="Stretch"
+                Style="{ThemeResource ButtonRevealStyle}"
+                CornerRadius="0 12 12 0">
+                <SymbolIcon Symbol="Send"/>
+            </Button>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+        
+    </Grid>
+</Page>

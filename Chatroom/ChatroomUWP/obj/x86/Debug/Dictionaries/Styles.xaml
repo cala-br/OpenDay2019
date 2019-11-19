@@ -1,0 +1,41 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChatroomUWP.Dictionaries">
+    
+    <!--#region Round text box reveal style-->
+    <Style 
+        x:Key="RoundTextBoxRevealStyle"
+        TargetType="TextBox">
+
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"/>
+
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Round button reveal style-->
+    <Style 
+        x:Key="RoundButtonRevealStyle"
+        TargetType="Button"
+        BasedOn="{StaticResource ButtonRevealStyle}">
+
+        <Setter Property="CornerRadius" Value="12"/>
+
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Title underline-->
+    <Style
+        x:Key="TitleUnderline"
+        TargetType="Rectangle">
+
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Fill" Value="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"/>
+        <Setter Property="Height" Value="1"/>
+
+    </Style>
+    <!--#endregion-->
+    
+</ResourceDictionary>
+

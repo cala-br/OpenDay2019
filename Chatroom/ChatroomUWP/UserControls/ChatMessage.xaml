@@ -1,0 +1,65 @@
+﻿<UserControl
+    x:Class="ChatroomUWP.UserControls.ChatMessage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChatroomUWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    MaxWidth="564"
+    MinWidth="220"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid 
+        Background="{ThemeResource SystemControlAcrylicElementBrush}"
+        CornerRadius="12"
+        Margin="12 4"
+        BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"
+        BorderThickness="2">
+
+        <!--#region Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+
+
+        <!--#region Username-->
+        <Grid 
+            Visibility="{x:Bind HeaderVisible}"
+            Margin="8 0"
+            HorizontalAlignment="Left">
+            <TextBlock
+                x:Name="_usernameBlock"
+                Style="{ThemeResource SubtitleTextBlockStyle}"
+                HorizontalAlignment="Left"
+                Text="{x:Bind Username}"/>
+
+            <Rectangle
+                Margin="0 4 0 0"
+                Style="{ThemeResource TitleUnderline}"/>
+        </Grid>
+        <!--#endregion-->
+
+        <!--Body-->
+        <TextBlock
+            Grid.Row="1"
+            Margin="8 4"
+            TextWrapping="Wrap"
+            Text="{x:Bind Body}"/>
+        
+        <!--Timestamp-->
+        <TextBlock
+            Grid.Row="2"
+            Opacity="0.8"
+            FontStyle="Italic"
+            Style="{ThemeResource CaptionTextBlockStyle}"
+            Margin="12 4"
+            HorizontalAlignment="Right"
+            Text="{x:Bind Timestamp}"/>
+
+    </Grid>
+</UserControl>

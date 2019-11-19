@@ -1,0 +1,42 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="ChatroomUWP.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChatroomUWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+    <NavigationView x:ConnectionId='2'
+        x:Name="_navView"
+        OpenPaneLength="220"
+                                              
+                                                     >
+        
+        <!--#region Menu items-->
+        <NavigationView.MenuItems>
+            
+            <!--#region Home-->
+            <NavigationViewItem
+                Tag="home#page"
+                Icon="Home"
+                Content="Home"/>
+            <!--#endregion-->
+            
+        </NavigationView.MenuItems>
+        <!--#endregion-->
+        
+        <!--#region Content frame-->
+        <Frame x:ConnectionId='3' x:Name="_contentFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+        <!--#endregion-->
+        
+    </NavigationView>
+</Page>
+
