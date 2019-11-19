@@ -11,7 +11,7 @@ The MQTT topics used for the communication.
 | ----- | ----------- |
 | [chatroom/](###Normal-message) | The topic that will contain all the messages |
 | [chatroom/usernames](###Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. |
-| [chatroom/recipient](###Direct-messages) | The topic used when sending direct messages. /username is the recipient's username. |
+| [chatroom/private-messages/recipient](###Direct-messages) | The topic used when sending direct messages. **/recipient** is the recipient's username. |
 
 
 # Messages format
@@ -39,7 +39,7 @@ mqttClient.publish(
 ### Direct messages
 ```json
 mqttClient.publish(
-    "chatroom/recipient",
+    "chatroom/private-messages/recipient",
     {
         "username"  : "", 
         "contents"  : "",
@@ -58,7 +58,7 @@ _*All the examples are written in pseudocode_
 /**
  * Publishing
  * 
- * For direct messages, the topic will be 'chatroom/recipient'.
+ * For direct messages, the topic will be 'chatroom/private-messages/recipient'.
  */ 
 mqttClient.publish(
     'chatroom/',
@@ -102,7 +102,7 @@ function initOwnTopic()
             {
                 if (!privateChatExists(msg.username))
                     createPrivateChat(msg.username);
-                    
+
                 showPrivateMessage(msg);
             }
         };
