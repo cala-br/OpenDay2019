@@ -161,7 +161,7 @@ function deregisterUsername()
      */ 
 
     data = new FormData();
-    data.append('username', username);s
+    data.append('username', username);
 
     navigator.sendBeacon(
         'http://subscription-manager.local:40000/deregister',
