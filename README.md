@@ -7,3 +7,5 @@ Repository for the Open Day projects.
 - Chatroom
     * Chatroom Web
     * Chatroom UWP
+    * Chatroom Bash
+    * Python Usernames Server
