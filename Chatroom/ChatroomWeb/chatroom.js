@@ -14,6 +14,7 @@ $(document).ready(() => {
             client.onMessageArrived = (message) => {
                 
                 let data = JSON.parse(message.payloadString);
+                let date = new Date(data.timestamp);
 
                 let sender = "";
                 if(lastReceived != data.username)
@@ -25,13 +26,13 @@ $(document).ready(() => {
                 $("#messagesContainer").html(
                     $("#messagesContainer").html() +
                     `<div class="row" style="margin-bottom: 0px">
-                        <div class="col ${position}" style="max-width: 60%; min-width: 20%;">
+                        <div class="col ${position}" style="max-width: 80%; min-width: 40%;">
                             <div class="card blue-grey darken-1">
                                 <div class="white-text" style="padding: 10px">
                                     ${sender}
                                     <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
                                     <span class="right" style="font-size:11px; margin-top: -8px;">
-                                        ${data.timestamp}
+                                        ${date.getHours()}:${date.getMinutes()}
                                         <i class="material-icons" style="font-size:11px;">check</i>
                                         <i class="material-icons" style="font-size:11px;">check</i>
                                     </span>
@@ -52,6 +53,8 @@ $(document).ready(() => {
     let modal = document.querySelectorAll('#usernameModal');
     let instance = M.Modal.init(modal, { dismissible : false })[0];
     instance.open();
+
+    $('.sidenav').sidenav();
 });
 
 function doSendMessage()
@@ -65,13 +68,12 @@ function doSendMessage()
 
 function sendMessage()
 {
-    let date = new Date();
     let message = $("#messageSendField").val();
 
     let json = {
         "username"  : username,
         "contents"  : message,
-        "timestamp" : `${date.getHours()}:${date.getMinutes()}`
+        "timestamp" : new Date()
     }
 
     if(message)
@@ -108,7 +110,6 @@ function selectUsername()
                     usedUsernames.push(name); 
                     client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
                     
-                    console.log(usedUsernames);
                     c.unsubscribe();
                 }
                 else
@@ -124,9 +125,11 @@ window.addEventListener("unload", (e) =>
     if(username)
     {
         navigator.sendBeacon(
-            'http://mosquitto-helper-server.local:40000', 
+            'http://localhost:40000', 
             username)
     }
+    e.returnValue = '';
 
+    return null;
     return false;
-});
+})

@@ -30,15 +30,11 @@ footer {
 
 #messageSendFooter ::-webkit-scrollbar { display: none; }
 
-#messageSendFooter .material-icons {
-    font-size: 28px; 
-    margin-top: 18px; 
-    margin-right:12px;
-    user-select: none;
-    cursor: pointer;
-    color: white;   
+#messagesContainer {
+    margin-bottom: 76px !important;
 }
 
-#messagesContainer {
-    margin-bottom: 64px !important;
+.sidenav-trigger {
+    position: fixed;
+    top: 0px;
 }
