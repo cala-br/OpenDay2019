@@ -100,8 +100,8 @@
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\SettingsPage.xbf">
       <PackagePath>Pages\SettingsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatMessage.xbf">
-      <PackagePath>UserControls\ChatMessage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatroomMessageControl.xbf">
+      <PackagePath>UserControls\ChatroomMessageControl.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>

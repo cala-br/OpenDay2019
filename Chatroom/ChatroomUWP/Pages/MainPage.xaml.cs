@@ -24,16 +24,27 @@ namespace ChatroomUWP.Pages
     {
         #region Private fields
 
-        private ChatroomClient _client;
+        private ChatroomClient _client = 
+            ChatroomClient.GetInstance();
 
         #endregion
 
         #region Public properties
 
         /// <summary>
+        /// The instance of this page.
+        /// </summary>
+        private static MainPage _instance { get; set; }
+
+        /// <summary>
         /// Used to navigate between pages.
         /// </summary>
-        public static Frame NavigationFrame { get; private set; }
+        public static Frame NavigationFrame => _instance._contentFrame;
+
+        /// <summary>
+        /// The application's theme.
+        /// </summary>
+        public static ElementTheme AppTheme => _instance.RequestedTheme;
 
         #endregion
 
@@ -42,9 +53,8 @@ namespace ChatroomUWP.Pages
         public MainPage()
         {
             InitializeComponent();
-            NavigationFrame = _contentFrame;
 
-            _client = ChatroomClient.GetInstance();
+            _instance = this;
         }
         #endregion
 

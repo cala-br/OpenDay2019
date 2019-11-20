@@ -28,7 +28,7 @@ namespace ChatroomUWP.Pages
     {
         #region Private fields
 
-        private ChatroomClient _client = 
+        private ChatroomClient _client =
             ChatroomClient.GetInstance();
 
         #endregion
@@ -40,6 +40,25 @@ namespace ChatroomUWP.Pages
             InitializeComponent();
 
             _client.MessageReceived += MessageReceivedHandler;
+            _client.Disconnected    += ClientDisconnectedHandler;
+            _client.Reconnected     += ClientReconnectedHandler;
+        }
+        #endregion
+
+
+        #region Client disconnected handler
+        private void ClientDisconnectedHandler()
+        {
+            _sendBox.IsEnabled    = false;
+            _sendButton.IsEnabled = false;
+        }
+        #endregion
+
+        #region Client reconnected handler
+        private void ClientReconnectedHandler()
+        {
+            _sendBox.IsEnabled    = true;
+            _sendButton.IsEnabled = true;
         }
         #endregion
 
@@ -52,7 +71,7 @@ namespace ChatroomUWP.Pages
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                ChatMessage cMsg = message;
+                ChatroomMessageControl cMsg = message;
                 cMsg.Position =
                     message.Username == _client.Username
                     ? Position.Right
@@ -64,14 +83,16 @@ namespace ChatroomUWP.Pages
         #endregion
 
 
-        #region Send box - key pressed
+        #region Send box - ctrl + enter pressed
         /// <summary>
-        /// Sends the message when enter is pressed.
+        /// Sends the message when ctrl + enter is pressed.
         /// </summary>
-        private void SendBoxKeyPressed(object sender, KeyRoutedEventArgs e)
+        private void SendBoxCtrlEnterPressed(
+            KeyboardAccelerator sender,
+            KeyboardAcceleratorInvokedEventArgs args) 
         {
-            if (e.Key == VirtualKey.Enter)
-                SendMessage(null, null);
+            args.Handled = true;
+            SendMessage(null, null);
         }
         #endregion
 
@@ -88,12 +109,16 @@ namespace ChatroomUWP.Pages
 
             var msg = new ChatroomMessage
             {
-                Contents = text,
+                Contents  = text,
                 Timestamp = DateTime.Now
             };
-
-            await _client.PublishAsync(
-                ChatroomClient.GENERAL_ROOM_TOPIC, msg);
+            
+            try
+            {
+                await _client.PublishAsync(
+                    ChatroomClient.GENERAL_ROOM_TOPIC, msg);
+            }
+            catch { ClientDisconnectedHandler(); }
 
             _sendBox.Text = string.Empty;
         }
@@ -104,22 +129,34 @@ namespace ChatroomUWP.Pages
         /// <summary>
         /// Displays a message.
         /// </summary>
-        private void DisplayChatMessage(ChatMessage message)
+        private void DisplayChatMessage(ChatroomMessageControl message)
         {
-            var lastMessageSender = _chatMessages
+            var lastMessage = _chatMessages
                 .Children
-                .LastOrDefault(msg =>
-                {
-                    return (msg as ChatMessage)
-                        .Username == message.Username;
-                });
+                .LastOrDefault() as ChatroomMessageControl;
 
-            message.HeaderVisible = 
-                lastMessageSender == default;
+            if (lastMessage != default)
+            {
+                message.HeaderVisible =
+                    lastMessage.Username != message.Username;
+            }
 
             _chatMessages
                 .Children
                 .Add(message);
+        }
+        #endregion
+
+
+        #region On navigated from 
+        /// <summary>
+        /// Removes the handlers.
+        /// </summary>
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _client.MessageReceived -= MessageReceivedHandler;
+            _client.Disconnected    -= ClientDisconnectedHandler;
+            _client.Reconnected     -= ClientReconnectedHandler;
         }
         #endregion
     }

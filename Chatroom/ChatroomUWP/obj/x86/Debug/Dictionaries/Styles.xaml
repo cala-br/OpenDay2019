@@ -37,5 +37,18 @@
     </Style>
     <!--#endregion-->
     
+    <!--#region Settings panel style-->
+    <Style
+        x:Key="SettingsPanelStyle"
+        TargetType="StackPanel">
+
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Background" Value="{ThemeResource SystemControlAcrylicElementBrush}"/>
+
+    </Style>
+    <!--#endregion-->
+    
 </ResourceDictionary>
 

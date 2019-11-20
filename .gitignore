@@ -4,3 +4,7 @@ package-lock.json
 
 # Ignore VS Code folder
 **/.vscode/
+
+# Ignore VS UWP
+Chatroom/ChatroomUWP/obj/
+Chatroom/ChatroomUWP/.vs/

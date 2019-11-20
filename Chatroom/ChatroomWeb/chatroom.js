@@ -77,7 +77,7 @@ function sendMessage()
     }
 
     if(message)
-    {
+    {  
         client.send("messori/fermi/chatroom", JSON.stringify(json));
         setTimeout(() => {
             $("#messageSendField").val("");

@@ -7,11 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <ScrollViewer>
+        <StackPanel Spacing="24">
 
-        <Grid>
+            <!--#region Theme-->
+            <StackPanel Style="{ThemeResource SettingsPanelStyle}">
+
+                <!--#region Title-->
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Spacing="8">
+
+                    <TextBlock 
+                        Text="Cambia il tema 🎨"
+                        Style="{ThemeResource TitleTextBlockStyle}"/>
+
+                </StackPanel>
+                <!--#endregion-->
+
+            </StackPanel>
+            <!--#endregion-->
             
-        </Grid>
-        
-    </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

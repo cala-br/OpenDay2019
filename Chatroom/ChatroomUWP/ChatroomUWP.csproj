@@ -142,8 +142,8 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\ChatMessage.xaml.cs">
-      <DependentUpon>ChatMessage.xaml</DependentUpon>
+    <Compile Include="UserControls\ChatroomMessageControl.xaml.cs">
+      <DependentUpon>ChatroomMessageControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ChatMessage.xaml">
+    <Page Include="UserControls\ChatroomMessageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

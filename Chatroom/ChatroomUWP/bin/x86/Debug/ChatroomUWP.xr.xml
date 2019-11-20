@@ -10,10 +10,12 @@
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="TextWrapping" />
+      <RootProperty Name="IsSpellCheckEnabled" />
+      <RootProperty Name="MaxLength" />
       <RootProperty Name="BorderBrush" />
+      <RootProperty Name="KeyboardAccelerators" />
       <RootProperty Name="Style" />
       <RootProperty Name="PlaceholderText" />
-      <RootEvent Name="KeyUp" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="CornerRadius" />
@@ -34,9 +36,28 @@
     <RootType FullName="Windows.UI.Xaml.FrameworkElement">
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Shapes.Shape">
       <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Spacing" />
+      <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Style" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Panel">
+      <RootProperty Name="Background" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
@@ -58,7 +79,12 @@
       <RootProperty Name="Background" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
+      <RootProperty Name="ContextFlyout" />
       <RootProperty Name="Visibility" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+      <RootEvent Name="PointerPressed" />
+      <RootEvent Name="PointerReleased" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
@@ -83,28 +109,14 @@
     <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
       <RootProperty Name="Symbol" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
-      <RootProperty Name="ChildrenTransitions" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="Padding" />
-      <RootProperty Name="MinWidth" />
-      <RootProperty Name="Spacing" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="CornerRadius" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Orientation" />
+    <RootType FullName="Windows.UI.Xaml.Input.KeyboardAccelerator">
+      <RootProperty Name="Key" />
+      <RootProperty Name="Modifiers" />
+      <RootEvent Name="Invoked" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.AddDeleteThemeTransition" />
-    <RootType FullName="ChatroomUWP.UserControls.ChatMessage">
-      <RootProperty Name="Username" />
-      <RootProperty Name="Body" />
-      <RootProperty Name="Timestamp" />
-      <RootProperty Name="Position" />
-      <RootProperty Name="HeaderVisible" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition">
+      <RootProperty Name="IsStaggeringEnabled" />
     </RootType>
     <RootType FullName="ChatroomUWP.Pages.HomePage" />
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
@@ -133,7 +145,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Frame">
       <RootProperty Name="ContentTransitions" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
     <RootType FullName="ChatroomUWP.Pages.MainPage" />
     <RootType FullName="ChatroomUWP.Pages.SettingsPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
@@ -141,5 +152,13 @@
       <RootProperty Name="MinWidth" />
       <RootProperty Name="Content" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
+      <RootProperty Name="Text" />
+      <RootProperty Name="Icon" />
+    </RootType>
+    <RootType FullName="ChatroomUWP.UserControls.ChatroomMessageControl" />
   </Roots.RootTypes>
 </Roots>

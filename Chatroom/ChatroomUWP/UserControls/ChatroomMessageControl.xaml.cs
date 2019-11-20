@@ -26,7 +26,7 @@ namespace ChatroomUWP.UserControls
     /// <summary>
     /// Represents a chat message.
     /// </summary>
-    public sealed partial class ChatMessage : UserControl
+    public sealed partial class ChatroomMessageControl : UserControl
     {
         #region Public properties
 
@@ -90,7 +90,7 @@ namespace ChatroomUWP.UserControls
 
 
         #region Constructor
-        public ChatMessage()
+        public ChatroomMessageControl()
         {
             InitializeComponent();
         }
@@ -99,7 +99,7 @@ namespace ChatroomUWP.UserControls
 
         #region Conversions
 
-        public static implicit operator ChatMessage(ChatroomMessage message) => new ChatMessage
+        public static implicit operator ChatroomMessageControl(ChatroomMessage message) => new ChatroomMessageControl
         {
             Username  = message.Username,
             Body      = message.Contents,
@@ -108,6 +108,14 @@ namespace ChatroomUWP.UserControls
                 .ToShortTimeString()
         };
 
+        #endregion
+
+
+        #region Reveal brush
+        private void _contentGrid_PointerEntered(object sender, PointerRoutedEventArgs e) => RevealBrush.SetState(_contentGrid, RevealBrushState.PointerOver);
+        private void _contentGrid_PointerExited(object sender, PointerRoutedEventArgs e) => RevealBrush.SetState(_contentGrid, RevealBrushState.Normal);
+        private void _contentGrid_PointerPressed(object sender, PointerRoutedEventArgs e) => RevealBrush.SetState(_contentGrid, RevealBrushState.Pressed);
+        private void _contentGrid_PointerReleased(object sender, PointerRoutedEventArgs e) => RevealBrush.SetState(_contentGrid, RevealBrushState.PointerOver);
         #endregion
     }
 }

@@ -34,6 +34,8 @@
             <TextBox
                 x:Name="_usernameBox"
                 Style="{ThemeResource RoundTextBoxRevealStyle}"
+                TextWrapping="Wrap"
+                MaxLength="32"
                 PlaceholderText="Username"/>
 
             <!--#region Join button-->

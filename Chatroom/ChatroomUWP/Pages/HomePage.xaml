@@ -31,23 +31,12 @@
                 <!--#region Transitions-->
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
-                        <AddDeleteThemeTransition/>
+                        <EntranceThemeTransition 
+                            IsStaggeringEnabled="True"/>
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
                 <!--#endregion-->
 
-                <usercontrols:ChatMessage
-                    Username="cala_br"
-                    Body="Hello world"
-                    Timestamp="23:26"
-                    Position="Left"/>
-
-                <usercontrols:ChatMessage
-                    Username="cala_br"
-                    Body="Hello world"
-                    Timestamp="23:26"
-                    HeaderVisible="False"
-                    Position="Left"/>
             </StackPanel>
             
         </ScrollViewer>
@@ -66,16 +55,27 @@
             </Grid.ColumnDefinitions>
             <!--#endregion-->
 
-            <!--Send box-->
+            
+            <!--#region Send box-->
             <TextBox
                 x:Name="_sendBox"
-                KeyUp="SendBoxKeyPressed"
                 CornerRadius="12 0 0 12"
                 TextWrapping="Wrap"
-                BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}"/>
+                IsSpellCheckEnabled="False"
+                MaxLength="1024"
+                BorderBrush="{ThemeResource SystemControlTransparentRevealListLowBorderBrush}">
+                <TextBox.KeyboardAccelerators>
+                    <KeyboardAccelerator 
+                        Key="Enter" 
+                        Modifiers="Control" 
+                        Invoked="SendBoxCtrlEnterPressed"/>
+                </TextBox.KeyboardAccelerators>
+            </TextBox>
+            <!--#endregion-->
 
             <!--#region Send button-->
             <Button
+                x:Name="_sendButton"
                 Click="SendMessage"
                 Grid.Column="1"
                 Margin="-2 0 0 0"
