@@ -66,7 +66,6 @@ function doSendMessage()
 
 function sendMessage()
 {
-    let date = new Date();
     let message = $("#messageSendField").val();
 
     let json = {
@@ -119,29 +118,16 @@ function selectUsername()
 }
 
 // This will free the username when the page is closed or refreshed
-$(window).on("beforeunload", (e) => {
-    let c = new Paho.MQTT.Client(host, port, "");
-    //let usedUsernames = [];
-    
-    // if(username)
-    // {
-    //     console.log("ciao");
-    //     c.connect({
-    //         onSuccess: () => {
-    //             c.subscribe("messori/fermi/chatroom/usernames");
-    //             c.onMessageArrived = (message) => {
-    //                 usedUsernames = JSON.parse(message.payloadString);
-
-    //                 usedUsernames.pop(username);
-    //                 client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
-                    
-    //                 console.log(usedUsernames);
-    //                 c.unsubscribe();
-    //             }
-    //         }
-    //     });
-    // }
-    client.send("messori/fermi/chatroom/usernames", JSON.stringify([]), 1, true);
+window.addEventListener("unload", (e) => 
+{    
+    if(username)
+    {
+        navigator.sendBeacon(
+            'http://localhost:40000', 
+            username)
+    }
     e.returnValue = '';
+
     return null;
-});
+    return false;
+})
