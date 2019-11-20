@@ -9,7 +9,7 @@ The MQTT topics used for the communication.
 
 | Topic | Description |
 | ----- | ----------- |
-| [chatroom/](###Normal-message) | The topic that will contain all the messages |
+| [chatroom](###Normal-message) | The topic that will contain all the messages |
 | [chatroom/usernames](###Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. This is managed by the subscription-manager server |
 | [chatroom/private-messages/recipient](###Direct-messages) | The topic used when sending direct messages. **/recipient** is the recipient's username. |
 
@@ -19,9 +19,8 @@ The requests that the subscription-manager server supports.
 
 | Request | Data | Description |
 | ------- | ---- | ----------- |
-| /is-taken | `{username : string}` | Checks if the username exists |
-| /deregister | `{username : string}` | Deregisters a client, removing it from the usernames list. |
-| /register | `{username : string}` | **Planned**, registers a client by adding it into the usernames list. |
+| /deregister | `string` | Deregisters a client, removing it from the usernames list. |
+| /register | `string` | **Planned**, registers a client by adding it into the usernames list. |
 
 
 # Messages format
@@ -121,7 +120,7 @@ function initOwnTopic()
 }
 ```
 
-### Checking for username
+### Registering username
 
 ```js
 /**
@@ -131,15 +130,13 @@ function initOwnTopic()
  * for another, otherwise it must publish back the usernames
  * with its own added to the list.
  */
-function checkIfUsernameTaken()
+function RegisterUsername(username)
 {
     $.ajax(
     {
-        method: 'GET',
-        url   : 'http://subscription-manager.local:40000/is-taken',
-        data  : {
-            username: username
-        }
+        method: 'POST',
+        url   : 'http://subscription-manager.local:40000/register',
+        data  : username
     })
     .done(_ => alert('Username ok'))
     .fail(_ => alert('Username taken'))
@@ -152,7 +149,7 @@ function checkIfUsernameTaken()
 /**
  * Deregisters the username.
  */
-function deregisterUsername()
+function deregisterUsername(username)
 {
     /**
      * The DELETE method is not used as
@@ -160,12 +157,9 @@ function deregisterUsername()
      * can only send post requests.
      */ 
 
-    data = new FormData();
-    data.append('username', username);
-
     navigator.sendBeacon(
         'http://subscription-manager.local:40000/deregister',
-        data
+        username
     );
 }
 ```
