@@ -49,6 +49,30 @@ class SubscriptionManager:
         print(self.usernames)
     #endregion
 
+    #region Register client
+    def registerClient(self, username : str) -> None:
+        """
+        Registers a client.
+
+        Parameters
+        ----------
+            username : str
+        """
+        if not self.clientExists(username):
+            self.usernames\
+                .append(username)
+        else:
+            return False
+
+        self.client\
+            .publish(
+                topic   = SubscriptionManager.USERNAMES_TOPIC,
+                payload = json.dumps(self.usernames),
+                retain  = True)
+
+        return True
+    #endregion
+
     #region Deregister client
     def deregisterClient(self, username : str) -> None:
         """

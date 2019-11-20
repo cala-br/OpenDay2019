@@ -92,31 +92,44 @@ function selectUsername()
 {
     let name = $("#usernameField").val();
 
-    let c = new Paho.MQTT.Client(host, port, "");
-    let usedUsernames = [];
+    // let c = new Paho.MQTT.Client(host, port, "");
+    // let usedUsernames = [];
 
-    c.connect({
-        onSuccess: () => {
-            c.subscribe("messori/fermi/chatroom/usernames");
-            c.onMessageArrived = (message) => {
-                usedUsernames = JSON.parse(message.payloadString);
+    // c.connect({
+    //     onSuccess: () => {
+    //         c.subscribe("messori/fermi/chatroom/usernames");
+    //         c.onMessageArrived = (message) => {
+    //             usedUsernames = JSON.parse(message.payloadString);
 
-                if(name && !usedUsernames.includes(name))
-                {
-                    username = name;
-                    $("#usernameModal").modal('close');
-                    $("body").css("overflow", "");
+    //             if(name && !usedUsernames.includes(name))
+    //             {
+    //                 username = name;
+    //                 $("#usernameModal").modal('close');
+    //                 $("body").css("overflow", "");
                     
-                    usedUsernames.push(name); 
-                    client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
+    //                 usedUsernames.push(name); 
+    //                 client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
                     
-                    c.unsubscribe();
-                }
-                else
-                    $("#usernameErrorLabel").css("display", "");
-            }
-        }
-    });
+    //                 c.unsubscribe();
+    //             }
+    //             else
+    //                 $("#usernameErrorLabel").css("display", "");
+    //         }
+    //     }
+    // });
+
+    $.ajax(
+    {
+        method: 'POST',
+        url   : 'http://localhost:40000/register',
+        data  : name
+    })
+    .done(_ => {
+        username = name;
+        $("#usernameModal").modal('close');
+        $("body").css("overflow", "");
+    })
+    .fail(_ => $("#usernameErrorLabel").css("display", ""))
 }
 
 // This will free the username when the page is closed or refreshed
@@ -126,7 +139,8 @@ window.addEventListener("unload", (e) =>
     {
         navigator.sendBeacon(
             'http://localhost:40000/deregister', 
-            username)
+            username
+        );
     }
     e.returnValue = '';
 

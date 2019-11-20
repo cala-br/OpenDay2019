@@ -17,6 +17,11 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
         if self.path == '/deregister':
             sub.deregisterClient(user)
             self.send_response(200)
+        elif self.path == '/register':
+            if sub.registerClient(user):
+                self.send_response(200)
+            else:
+                self.send_response(400)
         
         self.send_header("Content-type", "text/html")
         self.send_header("Access-Control-Allow-Origin", "*")
