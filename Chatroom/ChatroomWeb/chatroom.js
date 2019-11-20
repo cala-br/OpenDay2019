@@ -26,7 +26,7 @@ $(document).ready(() => {
                 $("#messagesContainer").html(
                     $("#messagesContainer").html() +
                     `<div class="row" style="margin-bottom: 0px">
-                        <div class="col ${position}" style="max-width: 60%; min-width: 20%;">
+                        <div class="col ${position}" style="max-width: 80%; min-width: 40%;">
                             <div class="card blue-grey darken-1">
                                 <div class="white-text" style="padding: 10px">
                                     ${sender}
@@ -53,6 +53,8 @@ $(document).ready(() => {
     let modal = document.querySelectorAll('#usernameModal');
     let instance = M.Modal.init(modal, { dismissible : false })[0];
     instance.open();
+
+    $('.sidenav').sidenav();
 });
 
 function doSendMessage()

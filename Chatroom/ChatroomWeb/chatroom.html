@@ -28,20 +28,44 @@
         <div class="row" id="messagesContainer">
         </div>
 
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+            <div class="background">
+                <img src="images/office.jpg">
+            </div>
+            <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        <div class="row">
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    
         <!--#region Footer-->
         <footer>
-            <div>
-                <div class="row" id="messageSendFooter">
-                    <div class="input-field col s10">
+            <div class="row" id="messageSendFooter" >
+                <div class="col s9 m10">
+                    <div class="input-field">
                         <textarea class="materialize-textarea" 
                             placeholder="Message" 
                             id="messageSendField" 
                             type="text" 
+                            style="color: white;"
                             onkeydown="doSendMessage()"></textarea>
                     </div>
-                    <div>
-                        <i class="material-icons right" onclick="sendMessage();">send</i>
-                    </div>
+                </div>
+                <div class="col s3 m2">
+                    <a class="btn-floating btn-large waves-effect waves-light" 
+                        style="margin: 8px; background-color: #26a69a99"
+                        onclick="sendMessage();">
+                        <i class="material-icons">send</i>
+                    </a>
                 </div>
             </div>
         </footer>
@@ -52,14 +76,23 @@
         <div id="usernameModal" class="modal">
             <div class="modal-content" style="padding-bottom: 0px;">
                 <h4>Scegli uno username</h4>
-                <div class="input-field col s10">
-                    <input style="width: 35%;" placeholder="Username" id="usernameField" type="text">
+                <div class="row">
+                    <div class="col s10">
+                        <div class="input-field">
+                            <input maxlength="32" placeholder="Username" id="usernameField" type="text">
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <a 
+                            href="#!" 
+                            style="margin-top: 16px"
+                            class="waves-effect waves-green btn-floating"
+                            onclick="selectUsername();">
+                            <i class="material-icons">done</i>
+                        </a>
+                    </div>
                 </div>
                 <p style="display: none; color: red" id="usernameErrorLabel">Username già in uso</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="waves-effect waves-green btn-flat"
-                    onclick="selectUsername();">Conferma</a>
             </div>
         </div>
         <!--#endregion-->

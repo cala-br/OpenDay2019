@@ -3,23 +3,17 @@ import time
 import http.server
 
 
-HOST_NAME = ''
+HOST_NAME = 'localhost'
 PORT_NUMBER = 40000
 
 
 class MyHandler(http.server.BaseHTTPRequestHandler):
-    def do_HEAD(s):
-        s.send_response(200)
-        s.send_header("Content-type", "text/html")
-        s.send_header("Access-Control-Allow-Origin", "*")
-        s.end_headers()
-
-    def do_GET(s):
+    def do_POST(self):
         """Respond to a GET request."""
-        s.send_response(200)
-        s.send_header("Content-type", "text/html")
-        s.send_header("Access-Control-Allow-Origin", "*")
-        s.end_headers()
+        self.send_response(400)
+        self.send_header("Content-type", "text/html")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
 
 if __name__ == '__main__':
     server_class = http.server.HTTPServer
