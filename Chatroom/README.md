@@ -19,8 +19,8 @@ The requests that the subscription-manager server supports.
 
 | Request | Data | Description |
 | ------- | ---- | ----------- |
-| /deregister | `{username : string}` | Deregisters a client, removing it from the usernames list. |
-| /register | `{username : string}` | **Planned**, registers a client by adding it into the usernames list. |
+| /deregister | `string` | Deregisters a client, removing it from the usernames list. |
+| /register | `string` | **Planned**, registers a client by adding it into the usernames list. |
 
 
 # Messages format
@@ -130,15 +130,13 @@ function initOwnTopic()
  * for another, otherwise it must publish back the usernames
  * with its own added to the list.
  */
-function RegisterUsername()
+function RegisterUsername(username)
 {
     $.ajax(
     {
         method: 'POST',
         url   : 'http://subscription-manager.local:40000/register',
-        data  : {
-            username: username
-        }
+        data  : username
     })
     .done(_ => alert('Username ok'))
     .fail(_ => alert('Username taken'))
@@ -151,7 +149,7 @@ function RegisterUsername()
 /**
  * Deregisters the username.
  */
-function deregisterUsername()
+function deregisterUsername(username)
 {
     /**
      * The DELETE method is not used as
@@ -159,12 +157,9 @@ function deregisterUsername()
      * can only send post requests.
      */ 
 
-    data = new FormData();
-    data.append('username', username);
-
     navigator.sendBeacon(
         'http://subscription-manager.local:40000/deregister',
-        data
+        username
     );
 }
 ```
