@@ -54,11 +54,6 @@ C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.xa
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.xaml
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.xbf
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.xbf
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatMessage.g.i.cs
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatMessage.g.cs
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatMessage.xaml
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatMessage.xbf
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatMessage.xbf
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\LoginPage.g.i.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\LoginPage.g.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Dictionaries\Styles.xaml
@@ -74,3 +69,8 @@ C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\System.Text.Json.
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\FxResources.System.Text.Json.SR.resw
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\resources.en-us.resfiles
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\resources.en-us.resfiles.intermediate
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatroomMessageControl.xbf
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.g.i.cs
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.g.cs
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.xaml
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.xbf

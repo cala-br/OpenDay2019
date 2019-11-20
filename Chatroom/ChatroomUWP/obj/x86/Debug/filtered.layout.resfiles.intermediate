@@ -12,6 +12,6 @@ Pages\HomePage.xbf
 Pages\LoginPage.xbf
 Pages\MainPage.xbf
 Pages\SettingsPage.xbf
-UserControls\ChatMessage.xbf
+UserControls\ChatroomMessageControl.xbf
 Properties\Default.rd.xml
 WinMetadata\Windows.winmd
