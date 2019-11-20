@@ -125,7 +125,7 @@ window.addEventListener("unload", (e) =>
     if(username)
     {
         navigator.sendBeacon(
-            'http://localhost:40000', 
+            'http://localhost:40000/deregister', 
             username)
     }
     e.returnValue = '';

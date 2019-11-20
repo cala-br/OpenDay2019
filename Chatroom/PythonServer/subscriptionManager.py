@@ -9,8 +9,8 @@ class SubscriptionManager:
 
     #region Static fields
 
-    BROKER_HOSTNAME = ''
-    USERNAMES_TOPIC = 'chatroom/usernames'
+    BROKER_HOSTNAME = 'broker.hivemq.com'
+    USERNAMES_TOPIC = 'messori/fermi/chatroom/usernames'
 
     #endregion
 
@@ -31,10 +31,7 @@ class SubscriptionManager:
     #endregion
 
     #region Store usernames
-    def storeUsernames(self,
-        client : MQTTClient, 
-        data   : Any,
-        msg    : MQTTMessage) -> None:
+    def storeUsernames(self, client : MQTTClient, data   : Any, msg    : MQTTMessage) -> None:
         """
         Stores the usernames. 
         Bound to the client's on_message event.
@@ -48,6 +45,8 @@ class SubscriptionManager:
 
         self.usernames = \
             json.loads(msg.payload.decode())
+
+        print(self.usernames)
     #endregion
 
     #region Deregister client
@@ -59,8 +58,9 @@ class SubscriptionManager:
         ----------
             username : str
         """
-        self.usernames\
-            .remove(username)
+        if self.clientExists(username):
+            self.usernames\
+                .remove(username)
 
         self.client\
             .publish(
@@ -82,6 +82,7 @@ class SubscriptionManager:
         -------
             bool
         """
+        return username in self.usernames
     #endregion
 
 #endregion
