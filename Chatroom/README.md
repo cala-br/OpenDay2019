@@ -21,7 +21,7 @@ The requests that the subscription-manager server supports.
 | ------- | ---- | ----------- |
 | /deregister | `string` | Deregisters a client, removing it from the usernames list. |
 | /register | `string` | **Planned**, registers a client by adding it into the usernames list. |
-
+| /getNames |  | Get the list of all currently registered usernames |
 
 # Messages format
 
@@ -163,3 +163,21 @@ function deregisterUsername(username)
     );
 }
 ```
+
+### Deregistering username
+
+```js
+/**
+ * Gets the registered username.
+ */
+function getUsernames()
+{
+    $.ajax(
+    {
+        method: 'GET',
+        url   : 'http://localhost:40000/getNames'
+    })
+    .done((usernameList) => {
+        do_something(usernameList))
+    }
+}
