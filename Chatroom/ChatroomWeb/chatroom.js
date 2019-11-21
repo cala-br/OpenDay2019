@@ -4,6 +4,9 @@ const port = 8000;
 var client       = null;
 var username     = null;
 var lastReceived = null;
+var openedDirect = [];
+
+var currentContainer = "#globalContainer";
 
 $(document).ready(() => {
     client = new Paho.MQTT.Client(host, port, "");
@@ -23,8 +26,8 @@ $(document).ready(() => {
                 lastReceived = data.username
                 let position = data.username == username ? "right" : "left";
 
-                $("#messagesContainer").html(
-                    $("#messagesContainer").html() +
+                $("#globalContainer").html(
+                    $("#globalContainer").html() +
                     `<div class="row" style="margin-bottom: 0px">
                         <div class="col ${position}" style="max-width: 80%; min-width: 40%;">
                             <div class="card blue-grey darken-1">
@@ -47,7 +50,8 @@ $(document).ready(() => {
         }
     }); 
 
-    $("#usernameModal").modal();
+    $('select').formSelect();
+    $(".modal").modal();
     $("#usernameModal").modal('open');
 
     let modal = document.querySelectorAll('#usernameModal');
@@ -128,5 +132,63 @@ function getUsernames()
         method: 'GET',
         url   : 'http://localhost:40000/getNames'
     })
-    .done((msg) => { console.log(msg) })
+    .done((msg) => { 
+
+        $("#directMessageSelect").html("<option disabled selected>Scegli il destinatario</option>");
+        $('#newDirectModal').modal('open');
+
+        for(el of JSON.parse(msg))
+        {
+            if(el != username)
+            $("#directMessageSelect").html(
+                $("#directMessageSelect").html() +
+                `<option>${el}</option>`
+            )
+        }
+        $('select').formSelect();
+    })
+}
+
+function createNewDirect()
+{
+    let selected = $("#directMessageSelect").val();
+
+    if(!openedDirect.includes(selected))
+    {
+        $("#slide-out .selected").removeClass("selected")
+        $("#slide-out").html(
+            $("#slide-out").html() +
+            `
+            <li>
+                <a id="${selected}Direct" class="waves-effect selected" href="#!" 
+                    style="margin-top: 10px;" onclick="selectChat('#${selected}Direct')">
+                    <i class="material-icons">face</i>
+                    ${selected}
+                </a>
+            </li>
+            `
+        );
+        openedDirect.push(selected);
+        $("#messagesContainers").html(
+            $("#messagesContainers").html() +
+            `<div class="row" id="${selected}DirectContainer"></div>`
+        );
+    }
+    $(currentContainer).hide();
+    currentContainer = `#${selected}DirectContainer`
+    $(currentContainer).show();
+
+    $('.sidenav').sidenav('close');
+}
+
+function selectChat(username)
+{
+    $("#slide-out .selected").removeClass("selected");
+    $(username).addClass("selected");
+
+    $(currentContainer).hide();
+    currentContainer = `${username}Container`
+    $(currentContainer).show();
+
+    $('.sidenav').sidenav('close');
 }

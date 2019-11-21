@@ -30,11 +30,18 @@ footer {
 
 #messageSendFooter ::-webkit-scrollbar { display: none; }
 
-#messagesContainer {
+#globalContainer {
+    margin-top: 36px;
     margin-bottom: 76px !important;
 }
 
-.sidenav-trigger {
+#sidenavButtonHeader {
     position: fixed;
     top: 0px;
+    width: 100%;
+    background: #b3b1b1;
+}
+
+#slide-out .selected{
+    background-color: #adadad;
 }

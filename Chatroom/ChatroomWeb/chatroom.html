@@ -25,27 +25,40 @@
     <!--#region Body-->
     <body>
 
-        <div class="row" id="messagesContainer">
+        <!--#region Containers-->
+        <div id="messagesContainers">
+            <div class="row" id="globalContainer"></div>
         </div>
+        <!--#endregion-->
 
-        <ul id="slide-out" class="sidenav">
-            <li><div class="user-view">
-            <div class="background">
-                <img src="images/office.jpg">
-            </div>
-            <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <!--#region Sidenav-->
+        <ul id="slide-out" class="sidenav" style="background-color:#d8d8d8">
+            <li>
+                <a id="global" class="waves-effect selected" href="#!" 
+                    style="margin-top: 10px;" onclick="selectChat('#global')">
+                    <i class="material-icons">cloud</i>
+                    Global chat
+                </a>
+            </li>
+            <li>
+                <div class="divider" style="background-color:#6666668c"></div>
+            </li>
+            <li class="row">
+                <div class="subheader col s10" style="padding: 0px 28px;">Direct messages</div>
+                <a href="#!" class="secondary-content col s2" onclick="getUsernames();">
+                    <i class="material-icons">add</i>
+                </a>
+            </li>
         </ul>
-        <div class="row">
-            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <!--#endregion-->
+
+        <!--#region Sidenav opener-->
+        <div class="row" id="sidenavButtonHeader">
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons" style="font-size: 32px;">menu</i>
+            </a>
         </div>
+        <!--#endregion-->
     
         <!--#region Footer-->
         <footer>
@@ -72,7 +85,7 @@
         <!--#endregion-->
 
 
-        <!--#region Modal-->
+        <!--#region username Modal-->
         <div id="usernameModal" class="modal">
             <div class="modal-content" style="padding-bottom: 0px;">
                 <h4>Scegli uno username</h4>
@@ -93,6 +106,30 @@
                     </div>
                 </div>
                 <p style="display: none; color: red" id="usernameErrorLabel">Username già in uso</p>
+            </div>
+        </div>
+        <!--#endregion-->
+
+        <!--#region New direct modal-->
+        <div id="newDirectModal" class="modal" style="overflow: visible">
+            <div class="modal-content" style="padding-bottom: 0px;">
+                <h5>Nuovo messaggio</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="directMessageSelect">
+                            <option disabled selected>Scegli il destinatario</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                    <div class="col s2">
+                        <a 
+                            href="#!"
+                            class="waves-effect waves-green btn-floating modal-close"
+                            onclick="createNewDirect();">
+                            <i class="material-icons">add</i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <!--#endregion-->
