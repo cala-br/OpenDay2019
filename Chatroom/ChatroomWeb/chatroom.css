@@ -30,7 +30,7 @@ footer {
 
 #messageSendFooter ::-webkit-scrollbar { display: none; }
 
-#globalContainer {
+.genericDivContainer {
     margin-top: 36px;
     margin-bottom: 76px !important;
 }

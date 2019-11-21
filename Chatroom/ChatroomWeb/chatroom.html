@@ -27,7 +27,7 @@
 
         <!--#region Containers-->
         <div id="messagesContainers">
-            <div class="row" id="globalContainer"></div>
+            <div class="row genericDivContainer" id="globalContainer"></div>
         </div>
         <!--#endregion-->
 
@@ -54,8 +54,9 @@
 
         <!--#region Sidenav opener-->
         <div class="row" id="sidenavButtonHeader">
-            <a href="#" data-target="slide-out" class="sidenav-trigger">
+            <a href="#" data-target="slide-out" class="sidenav-trigger" onclick="$('#newMessageIcon').hide()">
                 <i class="material-icons" style="font-size: 32px;">menu</i>
+                <i class="material-icons" id="newMessageIcon" style="font-size: 24px; display: none">new_releases</i>
             </a>
         </div>
         <!--#endregion-->

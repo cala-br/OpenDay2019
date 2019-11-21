@@ -2,6 +2,7 @@ const host = "broker.hivemq.com";
 const port = 8000;
 
 var client       = null;
+var privClient   = null;
 var username     = null;
 var lastReceived = null;
 var openedDirect = [];
@@ -82,7 +83,44 @@ function sendMessage()
 
     if(message)
     {  
-        client.send("messori/fermi/chatroom", JSON.stringify(json));
+        let topic = "";
+        if(currentContainer == '#globalContainer')
+            topic = "messori/fermi/chatroom";
+        else
+        {
+            topic = `messori/fermi/chatroom/private-messages/${currentContainer.replace("DirectContainer", "").replace("#", "")}`
+            
+            let data = json;
+            let date = new Date(data.timestamp);
+
+            let sender = "";
+            if(lastReceived != data.username)
+                sender = `<span class="card-title">${data.username}</span>`
+            
+            lastReceived = data.username
+            let position = data.username == username ? "right" : "left";
+
+            $(currentContainer).html(
+                $(currentContainer).html() +
+                `<div class="row" style="margin-bottom: 0px">
+                    <div class="col ${position}" style="max-width: 80%; min-width: 40%;">
+                        <div class="card blue-grey darken-1">
+                            <div class="white-text" style="padding: 10px">
+                                ${sender}
+                                <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
+                                <span class="right" style="font-size:11px; margin-top: -8px;">
+                                    ${date.getHours()}:${date.getMinutes()}
+                                    <i class="material-icons" style="font-size:11px;">check</i>
+                                    <i class="material-icons" style="font-size:11px;">check</i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+        }
+        
+        client.send(topic, JSON.stringify(json));
+
         setTimeout(() => {
             $("#messageSendField").val("");
             $("#messageSendField").css("height", "")
@@ -106,6 +144,73 @@ function selectUsername()
         username = name;
         $("#usernameModal").modal('close');
         $("body").css("overflow", "");
+
+        privClient = new Paho.MQTT.Client(host, port, "");
+
+        privClient.connect({
+            onSuccess: () => {
+                privClient.subscribe("messori/fermi/chatroom/private-messages/" + username);
+                privClient.onMessageArrived = (message) => {
+
+                    let data = JSON.parse(message.payloadString);
+                    let date = new Date(data.timestamp);
+
+                    if(!openedDirect.includes(data.username))
+                    {
+                        $("#slide-out").html(
+                            $("#slide-out").html() +
+                            `
+                            <li>
+                                <a id="${data.username}Direct" class="waves-effect" href="#!" 
+                                    style="margin-top: 10px;" onclick="selectChat('#${data.username}Direct')">
+                                    <i class="material-icons">face</i>
+                                    ${data.username}
+                                </a>
+                            </li>
+                            `
+                        );
+                        openedDirect.push(data.username);
+                        $("#messagesContainers").html(
+                            $("#messagesContainers").html() +
+                            `<div class="row genericDivContainer" 
+                                style="display: none"
+                                id="${data.username}DirectContainer"></div>`
+                        );
+
+                        $("#newMessageIcon").show();
+                    }
+
+                    let sender = "";
+                    if(lastReceived != data.username)
+                        sender = `<span class="card-title">${data.username}</span>`
+                    
+                    lastReceived = data.username
+                    let position = data.username == username ? "right" : "left";
+
+
+                    $("#" + data.username + "DirectContainer").html(
+                        $("#" + data.username + "DirectContainer").html() +
+                        `<div class="row" style="margin-bottom: 0px">
+                            <div class="col ${position}" style="max-width: 80%; min-width: 40%;">
+                                <div class="card blue-grey darken-1">
+                                    <div class="white-text" style="padding: 10px">
+                                        ${sender}
+                                        <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
+                                        <span class="right" style="font-size:11px; margin-top: -8px;">
+                                            ${date.getHours()}:${date.getMinutes()}
+                                            <i class="material-icons" style="font-size:11px;">check</i>
+                                            <i class="material-icons" style="font-size:11px;">check</i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    );
+                    
+                    window.scrollTo(0, document.body.scrollHeight);
+                };
+            }
+        }); 
     })
     .fail(_ => $("#usernameErrorLabel").css("display", ""))
 }
@@ -171,7 +276,7 @@ function createNewDirect()
         openedDirect.push(selected);
         $("#messagesContainers").html(
             $("#messagesContainers").html() +
-            `<div class="row" id="${selected}DirectContainer"></div>`
+            `<div class="row genericDivContainer" id="${selected}DirectContainer"></div>`
         );
     }
     $(currentContainer).hide();
