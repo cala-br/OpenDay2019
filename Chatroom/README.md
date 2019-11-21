@@ -17,11 +17,11 @@ The MQTT topics used for the communication.
 
 The requests that the subscription-manager server supports.
 
-| Request | Data | Description |
-| ------- | ---- | ----------- |
-| /deregister | `string` | Deregisters a client, removing it from the usernames list. |
-| /register | `string` | **Planned**, registers a client by adding it into the usernames list. |
-| /getNames |  | Get the list of all currently registered usernames |
+| Request | Type | Returns | Data | Description |
+| ------- | ---- | ------- | ---- | ----------- |
+| [/deregister](###Registering username) | POST | 200 | `string` | Deregisters a client, removing it from the usernames list. |
+| [/register](###Deregistering username) | POST | 200 Done <br> 400 Fail | `string` | **Planned**, registers a client by adding it into the usernames list. |
+| [/getNames](###Getting usernames) | GET | \["n1", "n2"] |  | Get the list of all currently registered usernames |
 
 # Messages format
 
@@ -164,7 +164,7 @@ function deregisterUsername(username)
 }
 ```
 
-### Deregistering username
+### Getting usernames
 
 ```js
 /**
