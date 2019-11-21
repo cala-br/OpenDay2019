@@ -9,9 +9,9 @@ The MQTT topics used for the communication.
 
 | Topic | Description |
 | ----- | ----------- |
-| [chatroom](###Normal-message) | The topic that will contain all the messages |
-| [chatroom/usernames](###Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. This is managed by the subscription-manager server |
-| [chatroom/private-messages/recipient](###Direct-messages) | The topic used when sending direct messages. **/recipient** is the recipient's username. |
+| [chatroom](#Normal-message) | The topic that will contain all the messages |
+| [chatroom/usernames](#Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. This is managed by the subscription-manager server |
+| [chatroom/private-messages/recipient](#Direct-messages) | The topic used when sending direct messages. **/recipient** is the recipient's username. |
 
 # Server requests
 
@@ -19,9 +19,9 @@ The requests that the subscription-manager server supports.
 
 | Request | Type | Returns | Data | Description |
 | ------- | ---- | ------- | ---- | ----------- |
-| [/deregister](###Registering-username) | POST | 200 | `string` | Deregisters a client, removing it from the usernames list. |
-| [/register](###Deregistering-username) | POST | 200 Done <br> 400 Fail | `string` | **Planned**, registers a client by adding it into the usernames list. |
-| [/getNames](###Getting-usernames) | GET | \["n1", "n2"] |  | Get the list of all currently registered usernames |
+| [/deregister](#Registering-username) | POST | 200 | `string` | Deregisters a client, removing it from the usernames list. |
+| [/register](#Deregistering-username) | POST | 200 Done <br> 400 Fail | `string` | **Planned**, registers a client by adding it into the usernames list. |
+| [/getNames](#Getting-usernames) | GET | \["n1", "n2"] |  | Get the list of all currently registered usernames |
 
 # Messages format
 
