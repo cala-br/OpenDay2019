@@ -92,32 +92,6 @@ function selectUsername()
 {
     let name = $("#usernameField").val();
 
-    // let c = new Paho.MQTT.Client(host, port, "");
-    // let usedUsernames = [];
-
-    // c.connect({
-    //     onSuccess: () => {
-    //         c.subscribe("messori/fermi/chatroom/usernames");
-    //         c.onMessageArrived = (message) => {
-    //             usedUsernames = JSON.parse(message.payloadString);
-
-    //             if(name && !usedUsernames.includes(name))
-    //             {
-    //                 username = name;
-    //                 $("#usernameModal").modal('close');
-    //                 $("body").css("overflow", "");
-                    
-    //                 usedUsernames.push(name); 
-    //                 client.send("messori/fermi/chatroom/usernames", JSON.stringify(usedUsernames), 1, true);
-                    
-    //                 c.unsubscribe();
-    //             }
-    //             else
-    //                 $("#usernameErrorLabel").css("display", "");
-    //         }
-    //     }
-    // });
-
     $.ajax(
     {
         method: 'POST',
@@ -145,5 +119,14 @@ window.addEventListener("unload", (e) =>
     e.returnValue = '';
 
     return null;
-    return false;
 })
+
+function getUsernames()
+{
+    $.ajax(
+    {
+        method: 'GET',
+        url   : 'http://localhost:40000/getNames'
+    })
+    .done((msg) => { console.log(msg) })
+}
