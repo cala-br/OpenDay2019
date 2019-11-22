@@ -31,7 +31,7 @@ footer {
 #messageSendFooter ::-webkit-scrollbar { display: none; }
 
 .genericDivContainer {
-    margin-top: 36px;
+    margin-top: 48px;
     margin-bottom: 76px !important;
 }
 
@@ -39,9 +39,15 @@ footer {
     position: fixed;
     top: 0px;
     width: 100%;
-    background: #b3b1b1;
+    background: #5a5a5a;
 }
 
 #slide-out .selected{
     background-color: #adadad;
+}
+
+
+#currentChatLabel {
+    padding: 4px;
+    font-size: 20px;
 }

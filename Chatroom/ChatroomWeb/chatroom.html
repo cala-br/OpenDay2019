@@ -38,6 +38,10 @@
                     style="margin-top: 10px;" onclick="selectChat('#global')">
                     <i class="material-icons">cloud</i>
                     Global chat
+                    <i class="material-icons right" id="globalContainerNewIcon" 
+                        style="font-size: 24px; color: #3b8880; display: none">
+                        new_releases
+                    </i>
                 </a>
             </li>
             <li>
@@ -53,11 +57,12 @@
         <!--#endregion-->
 
         <!--#region Sidenav opener-->
-        <div class="row" id="sidenavButtonHeader">
-            <a href="#" data-target="slide-out" class="sidenav-trigger" onclick="$('#newMessageIcon').hide()">
-                <i class="material-icons" style="font-size: 32px;">menu</i>
-                <i class="material-icons" id="newMessageIcon" style="font-size: 24px; display: none">new_releases</i>
+        <div class="row" id="sidenavButtonHeader" style="padding: 4px;">
+            <a href="#" data-target="slide-out" class="sidenav-trigger btn-floating waves-effect waves-light" onclick="$('#newMessageIcon').hide()">
+                <i class="material-icons" style="font-size: 24px;">menu</i>
             </a>
+            <i class="material-icons" id="newMessageIcon" style="font-size: 24px; display: none; color: #3b8880;">new_releases</i>
+            <a class="right" id="currentChatLabel">global</a>
         </div>
         <!--#endregion-->
     

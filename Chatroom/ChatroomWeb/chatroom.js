@@ -4,7 +4,7 @@ const port = 8000;
 var client       = null;
 var privClient   = null;
 var username     = null;
-var lastReceived = null;
+var lastReceived = {};
 var openedDirect = [];
 
 var currentContainer = "#globalContainer";
@@ -21,12 +21,17 @@ $(document).ready(() => {
                 let date = new Date(data.timestamp);
 
                 let sender = "";
-                if(lastReceived != data.username)
+                if(lastReceived[currentContainer] != data.username)
                     sender = `<span class="card-title">${data.username}</span>`
                 
-                lastReceived = data.username
+                lastReceived[currentContainer] = data.username
                 let position = data.username == username ? "right" : "left";
 
+                if($("#globalContainer").is(":hidden"))
+                {
+                    $("#globalContainerNewIcon").show();
+                    $("#newMessageIcon").show();
+                }
                 $("#globalContainer").html(
                     $("#globalContainer").html() +
                     `<div class="row" style="margin-bottom: 0px">
@@ -36,9 +41,7 @@ $(document).ready(() => {
                                     ${sender}
                                     <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
                                     <span class="right" style="font-size:11px; margin-top: -8px;">
-                                        ${date.getHours()}:${date.getMinutes()}
-                                        <i class="material-icons" style="font-size:11px;">check</i>
-                                        <i class="material-icons" style="font-size:11px;">check</i>
+                                        ${date.toTimeString().slice(0,5)}
                                     </span>
                                 </div>
                             </div>
@@ -94,10 +97,10 @@ function sendMessage()
             let date = new Date(data.timestamp);
 
             let sender = "";
-            if(lastReceived != data.username)
+            if(lastReceived[currentContainer] != data.username)
                 sender = `<span class="card-title">${data.username}</span>`
             
-            lastReceived = data.username
+            lastReceived[currentContainer] = data.username
             let position = data.username == username ? "right" : "left";
 
             $(currentContainer).html(
@@ -109,14 +112,14 @@ function sendMessage()
                                 ${sender}
                                 <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
                                 <span class="right" style="font-size:11px; margin-top: -8px;">
-                                    ${date.getHours()}:${date.getMinutes()}
-                                    <i class="material-icons" style="font-size:11px;">check</i>
-                                    <i class="material-icons" style="font-size:11px;">check</i>
+                                    ${date.toTimeString().slice(0,5)}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>`);
+
+            window.scrollTo(0, document.body.scrollHeight);
         }
         
         client.send(topic, JSON.stringify(json));
@@ -165,6 +168,11 @@ function selectUsername()
                                     style="margin-top: 10px;" onclick="selectChat('#${data.username}Direct')">
                                     <i class="material-icons">face</i>
                                     ${data.username}
+                                    <i class="material-icons right" 
+                                        style="font-size: 24px; color: #3b8880;"
+                                        id="${data.username + "DirectContainerNewIcon"}">
+                                        new_releases
+                                    </i>
                                 </a>
                             </li>
                             `
@@ -181,13 +189,17 @@ function selectUsername()
                     }
 
                     let sender = "";
-                    if(lastReceived != data.username)
+                    if(lastReceived[currentContainer] != data.username)
                         sender = `<span class="card-title">${data.username}</span>`
                     
-                    lastReceived = data.username
+                    lastReceived[currentContainer] = data.username
                     let position = data.username == username ? "right" : "left";
 
-
+                    if($("#" + data.username + "DirectContainer").is(":hidden"))
+                    {
+                        $("#" + data.username + "DirectContainerNewIcon").show();
+                        $("#newMessageIcon").show();
+                    }
                     $("#" + data.username + "DirectContainer").html(
                         $("#" + data.username + "DirectContainer").html() +
                         `<div class="row" style="margin-bottom: 0px">
@@ -197,9 +209,7 @@ function selectUsername()
                                         ${sender}
                                         <p style="word-break: break-all; margin-top: 0px;">${data.contents.replace(/\n/gi, "<br>")}</p>
                                         <span class="right" style="font-size:11px; margin-top: -8px;">
-                                            ${date.getHours()}:${date.getMinutes()}
-                                            <i class="material-icons" style="font-size:11px;">check</i>
-                                            <i class="material-icons" style="font-size:11px;">check</i>
+                                            ${date.toTimeString().slice(0,5)}
                                         </span>
                                     </div>
                                 </div>
@@ -284,6 +294,8 @@ function createNewDirect()
     $(currentContainer).show();
 
     $('.sidenav').sidenav('close');
+
+    $("#currentChatLabel").html(selected);
 }
 
 function selectChat(username)
@@ -295,5 +307,9 @@ function selectChat(username)
     currentContainer = `${username}Container`
     $(currentContainer).show();
 
+    $(currentContainer + "NewIcon").hide();
+
     $('.sidenav').sidenav('close');
+
+    $("#currentChatLabel").html((username).replace("Direct","").replace("#",""));
 }
