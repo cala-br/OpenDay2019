@@ -1,4 +1,5 @@
-﻿using ChatroomUWP.Pages;
+﻿using ChatroomUWP.Classes;
+using ChatroomUWP.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -94,7 +95,15 @@ namespace ChatroomUWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: salvare lo stato dell'applicazione e arrestare eventuali attività eseguite in background
+
+            var client = 
+                ChatroomClient.GetInstance();
+
+            client
+                .DeregisterUsernameAsync()
+                .Wait();
+
+            client.Dispose();
             deferral.Complete();
         }
     }

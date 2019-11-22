@@ -8,7 +8,9 @@
     mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Spacing="24">
+        <StackPanel 
+            Spacing="24"
+            Margin="24">
 
             <!--#region Theme-->
             <StackPanel Style="{ThemeResource SettingsPanelStyle}">
@@ -25,6 +27,14 @@
                 </StackPanel>
                 <!--#endregion-->
 
+                <!--#region Radios-->
+                <StackPanel x:Name="_themePanel">
+                    <RadioButton Content="Chiaro"  Tag="light"   GroupName="theme#radios"/>
+                    <RadioButton Content="Scuro"   Tag="dark"    GroupName="theme#radios"/>
+                    <RadioButton Content="Sistema" Tag="default" GroupName="theme#radios"/>
+                </StackPanel>
+                <!--#endregion-->
+                
             </StackPanel>
             <!--#endregion-->
             

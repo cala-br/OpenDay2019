@@ -9,6 +9,7 @@
 
     <Grid>
         <StackPanel
+            x:Name="_contentPanel"
             Padding="24 12"
             MinWidth="220"
             Spacing="12"
@@ -30,13 +31,14 @@
             </Grid>
             <!--#endregion-->
 
-            <!--Username box-->
+            <!--#region Username box-->
             <TextBox
                 x:Name="_usernameBox"
                 Style="{ThemeResource RoundTextBoxRevealStyle}"
                 TextWrapping="Wrap"
                 MaxLength="32"
                 PlaceholderText="Username"/>
+            <!--#endregion-->
 
             <!--#region Join button-->
             <Button
@@ -50,7 +52,21 @@
                 </StackPanel>
             </Button>
             <!--#endregion-->
-            
+
+
+            <!--#region Error flyout-->
+            <StackPanel.ContextFlyout>
+                <Flyout 
+                    x:Name="_errorFlyout"
+                    Placement="Left">
+                    <TextBlock 
+                        x:Name="_errorTextBlock"
+                        Opacity="0.8"
+                        Style="{ThemeResource CaptionTextBlockStyle}"/>
+                </Flyout>
+            </StackPanel.ContextFlyout>
+            <!--#endregion-->
+
         </StackPanel>
     </Grid>
 </Page>

@@ -10,6 +10,7 @@ using MQTTnet.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -48,6 +49,10 @@ namespace ChatroomUWP.Classes
 
         private CancellationTokenSource _connectionTokenSource;
 
+        private HttpClient _httpClient;
+
+        private bool _canReconnect;
+
         #endregion
 
         #region Public properties
@@ -81,6 +86,9 @@ namespace ChatroomUWP.Classes
         public const string
             GENERAL_ROOM_TOPIC = "messori/fermi/chatroom"; //"chatroom/";
 
+        public const string 
+            REGISTRATION_SERVER = "";
+
         #endregion
 
         #region Events
@@ -90,7 +98,15 @@ namespace ChatroomUWP.Classes
         /// </summary>
         public event Action Disconnected;
 
+        /// <summary>
+        /// Raised when the client reconnects.
+        /// </summary>
         public event Action Reconnected;
+
+        /// <summary>
+        /// Raised when a connection error arises.
+        /// </summary>
+        public event Action ConnectionError;
 
         /// <summary>
         /// Raised when the clientId already exists.
@@ -113,11 +129,16 @@ namespace ChatroomUWP.Classes
         #region Begin
         /// <summary>
         /// Initializes the client and 
-        /// starts the connection.
+        /// starts the connection if the given username
+        /// is not duplicated.
         /// </summary>
-        public void Begin(string clientId)
+        public async Task Begin(string username)
         {
-            _clientId = clientId;
+            _clientId     = username;
+            _canReconnect = true;
+
+            if (!await RegisterUsernameAsync(username))
+                return;
 
             InitializeMqttClientAsync();
         }
@@ -188,10 +209,16 @@ namespace ChatroomUWP.Classes
             if (e.ClientWasConnected)
             {
                 Disconnected?.Invoke();
-                await _mqttClient.ReconnectAsync();
-                Reconnected?.Invoke();
+
+                if (_canReconnect)
+                {
+                    await _mqttClient.ReconnectAsync();
+                    Reconnected?.Invoke();
+                }
+
                 return;
             }
+            else ConnectionError?.Invoke();
 
             _connectionTokenSource = 
                 new CancellationTokenSource();
@@ -215,15 +242,6 @@ namespace ChatroomUWP.Classes
         {
             var msg = e.ApplicationMessage;
 
-            if (msg.Topic == USERNAMES_TOPIC)
-            {
-                var payload = JsonSerializer
-                    .Deserialize<List<string>>(msg.Payload);
-
-                await CheckForDuplicateNameAsync(payload);
-                return;
-            }
-
             try
             {
                 var chatMsg = 
@@ -240,40 +258,14 @@ namespace ChatroomUWP.Classes
                 if (isInvalid) 
                     throw new JsonException();
 
-                MessageReceived?.Invoke(msg.Topic, chatMsg);
+                MessageReceived?.Invoke(
+                    msg.Topic,
+                    chatMsg);
+
+                await ChatroomMessagesManager
+                    .Dispatch(msg.Topic, chatMsg);
             }
             catch (JsonException) { /*Bad message*/ }
-        }
-        #endregion
-
-        #region Check for duplicate name async
-        /// <summary>
-        /// Raises the <see cref="DuplicateName"/> event if 
-        /// the clientId is already registered.
-        /// </summary>
-        /// <returns></returns>
-        private async Task CheckForDuplicateNameAsync(List<string> usernames)
-        {
-            var userExists = 
-                usernames.Contains(_clientId);
-
-            if (userExists)
-            {
-                DuplicateName?.Invoke();
-                Dispose(true);
-                return;
-            }
-
-            await _mqttClient
-                .UnsubscribeAsync(USERNAMES_TOPIC);
-
-            usernames.Add(_clientId);
-            await _mqttClient.PublishAsync(new MqttApplicationMessage
-            {
-                Topic   = USERNAMES_TOPIC,
-                Payload = JsonSerializer.SerializeToUtf8Bytes(usernames),
-                Retain  = true
-            });
         }
         #endregion
 
@@ -301,6 +293,64 @@ namespace ChatroomUWP.Classes
         #endregion
 
 
+        #region Register username async
+        /// <summary>
+        /// Raises the <see cref="DuplicateName"/> event if 
+        /// the clientId is already registered.
+        /// </summary>
+        private async Task<bool> RegisterUsernameAsync(string username)
+        {
+            _httpClient ??= new HttpClient();
+
+            using var content = 
+                new StringContent(username);
+
+            try
+            {
+                var resp = await 
+                    _httpClient.PostAsync(REGISTRATION_SERVER, content);
+
+                if (!resp.IsSuccessStatusCode)
+                    DuplicateName?.Invoke();
+
+                return resp.IsSuccessStatusCode;
+            }
+            catch {
+                ConnectionError?.Invoke();
+                return false; 
+            }
+        }
+        #endregion
+
+        #region Deregister username async
+        /// <summary>
+        /// Deregisters the client.
+        /// The mqtt connection is stopped.
+        /// </summary>
+        public async Task DeregisterUsernameAsync()
+        {
+            _httpClient ??= new HttpClient();
+
+            _canReconnect = false;
+            if (_mqttClient != null)
+                await _mqttClient.DisconnectAsync();
+
+            using var content = 
+                new StringContent(_clientId);
+
+            try
+            {
+                await _httpClient
+                    .PostAsync(REGISTRATION_SERVER, content);
+            }
+            catch {
+                ConnectionError?.Invoke();
+                return; 
+            }
+        }
+        #endregion
+
+
         #region IDisposable Support
         private bool _disposedValue = false; 
 
@@ -316,9 +366,14 @@ namespace ChatroomUWP.Classes
                     _mqttClientOptions = null;
                 }
 
+                _httpClient?.Dispose();
                 _connectionTokenSource?.Dispose();
-                using (_mqttClient)
-                    await _mqttClient.DisconnectAsync();
+
+                if (_mqttClient != null)
+                {
+                    using (_mqttClient) 
+                        await _mqttClient.DisconnectAsync();
+                }
 
                 _disposedValue = true;
             }

@@ -44,7 +44,16 @@ namespace ChatroomUWP.Pages
         /// <summary>
         /// The application's theme.
         /// </summary>
-        public static ElementTheme AppTheme => _instance.RequestedTheme;
+        public static ElementTheme AppTheme
+        {
+            get => _instance.RequestedTheme;
+            set => _instance.RequestedTheme = value;
+        }
+
+        /// <summary>
+        /// The main navigation view.
+        /// </summary>
+        public static NavigationView NavigationView => _instance._navView;
 
         #endregion
 
@@ -54,7 +63,9 @@ namespace ChatroomUWP.Pages
         {
             InitializeComponent();
 
-            _instance = this;
+            _instance      = this;
+            _firstItem.Tag = 
+                ChatroomClient.GENERAL_ROOM_TOPIC;
         }
         #endregion
 
@@ -76,15 +87,16 @@ namespace ChatroomUWP.Pages
             var item = args
                 .SelectedItem as NavigationViewItem;
 
-            _contentFrame.Navigate(item.Tag switch
-            {
-                "home#page" => _client.IsLoggedIn 
-                            ? typeof(HomePage) 
-                            : typeof(LoginPage),
+            var tag = item
+                .Tag as string;
 
-                _ => throw 
-                    new Exception($"Page doesn't exist: {item.Tag}")
-            });
+            if (tag.StartsWith(ChatroomClient.GENERAL_ROOM_TOPIC))
+            {
+                _contentFrame.Navigate(
+                    _client.IsLoggedIn 
+                    ? typeof(ChatPage) 
+                    : typeof(LoginPage), tag);
+            }
         }
         #endregion
     }

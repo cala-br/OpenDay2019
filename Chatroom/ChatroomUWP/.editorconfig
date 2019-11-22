@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS8509: L'espressione switch non gestisce tutti gli input possibili (non è esaustiva).
+dotnet_diagnostic.CS8509.severity = none

@@ -13,18 +13,70 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Il modello di elemento Pagina vuota è documentato all'indirizzo https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ChatroomUWP.Pages
 {
-    /// <summary>
-    /// Pagina vuota che può essere usata autonomamente oppure per l'esplorazione all'interno di un frame.
-    /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        #region Constructor
         public SettingsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            InitializeThemeOptions();
         }
+        #endregion
+
+
+        #region Theme
+        private void InitializeThemeOptions()
+        {
+            var appTheme = MainPage.AppTheme;
+            var buttons  = _themePanel
+                .Children
+                .Cast<RadioButton>()
+                .ToList();
+
+            switch (appTheme)
+            {
+                case ElementTheme.Light:   buttons[0].IsChecked = true; break;
+                case ElementTheme.Dark:    buttons[1].IsChecked = true; break;
+                case ElementTheme.Default: buttons[2].IsChecked = true; break;
+            }
+
+            buttons.ForEach(btn =>
+            {
+                btn.Checked += SetTheme; 
+            });
+        }
+        #endregion
+
+        #region Set theme
+        /// <summary>
+        /// Sets the app theme.
+        /// </summary>
+        private void SetTheme(object sender, RoutedEventArgs e)
+        {
+            var themeButton = sender as RadioButton;
+
+            MainPage.AppTheme = themeButton.Tag switch
+            {
+                "light"   => ElementTheme.Light,
+                "dark"    => ElementTheme.Dark,
+                "default" => ElementTheme.Default
+            };
+        }
+        #endregion
+
+
+        #region On navigated from
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _themePanel
+                .Children
+                .Cast<RadioButton>()
+                .ToList()
+                .ForEach(btn => btn.Checked -= SetTheme);
+        }
+        #endregion
     }
 }

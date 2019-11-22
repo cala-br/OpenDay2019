@@ -37,8 +37,9 @@ namespace ChatroomUWP.Pages
             InitializeComponent();
 
             _client = ChatroomClient.GetInstance();
-            _client.DuplicateName += DuplicateNameHandler;
-            _client.Connected     += ConnectedHandler;
+            _client.DuplicateName   += DuplicateNameHandler;
+            _client.Connected       += ConnectedHandler;
+            _client.ConnectionError += ConnectionErrorHandler;
         }
         #endregion
 
@@ -47,7 +48,7 @@ namespace ChatroomUWP.Pages
         /// <summary>
         /// Tries to login.
         /// </summary>
-        private void TryLogin(object sender, RoutedEventArgs e)
+        private async void TryLogin(object sender, RoutedEventArgs e)
         {
             var username  = _usernameBox.Text;
             var isInvalid =
@@ -56,12 +57,24 @@ namespace ChatroomUWP.Pages
             if (!isInvalid)
             {
                 _usernameBox.IsEnabled = false;
-                _client.Begin(username);
+                await _client.Begin(username);
             }
         }
         #endregion
 
-        #region Duplicate name
+
+        #region Show error
+        /// <summary>
+        /// Displays an error.
+        /// </summary>
+        private void ShowError(string error)
+        {
+            _errorFlyout.ShowAt(_contentPanel);
+            _errorTextBlock.Text = error;
+        }
+        #endregion
+
+        #region Duplicate name handler
         /// <summary>
         /// Re-asks the username.
         /// </summary>
@@ -70,10 +83,25 @@ namespace ChatroomUWP.Pages
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 _usernameBox.IsEnabled = true;
-                _client = ChatroomClient.GetInstance();
+                ShowError("Questo nome esiste già");
             });
         }
         #endregion
+
+        #region Connection error handler
+        /// <summary>
+        /// Handles connection errors.
+        /// </summary>
+        private async void ConnectionErrorHandler()
+        {
+            await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _usernameBox.IsEnabled = true;
+                ShowError("Errore di connessione al server.");
+            });
+        }
+        #endregion
+
 
         #region Connected
         /// <summary>
@@ -85,7 +113,9 @@ namespace ChatroomUWP.Pages
             {
                 MainPage
                     .NavigationFrame
-                    .Navigate(typeof(HomePage));
+                    .Navigate(
+                        typeof(ChatPage), 
+                        ChatroomClient.GENERAL_ROOM_TOPIC);
             });
         }
         #endregion
@@ -97,9 +127,9 @@ namespace ChatroomUWP.Pages
         /// </summary>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            _client.DuplicateName -= DuplicateNameHandler;
-            _client.Connected     -= ConnectedHandler;
-            base.OnNavigatedFrom(e);
+            _client.DuplicateName   -= DuplicateNameHandler;
+            _client.Connected       -= ConnectedHandler;
+            _client.ConnectionError -= ConnectionErrorHandler;
         }
         #endregion
     }

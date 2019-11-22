@@ -88,8 +88,8 @@
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Dictionaries\Styles.xbf">
       <PackagePath>Dictionaries\Styles.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\HomePage.xbf">
-      <PackagePath>Pages\HomePage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\ChatPage.xbf">
+      <PackagePath>Pages\ChatPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\LoginPage.xbf">
       <PackagePath>Pages\LoginPage.xbf</PackagePath>

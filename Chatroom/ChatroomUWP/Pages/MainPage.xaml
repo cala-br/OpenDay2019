@@ -19,7 +19,7 @@
             
             <!--#region Home-->
             <NavigationViewItem
-                Tag="home#page"
+                x:Name="_firstItem"
                 Icon="Home"
                 Content="Home"/>
             <!--#endregion-->

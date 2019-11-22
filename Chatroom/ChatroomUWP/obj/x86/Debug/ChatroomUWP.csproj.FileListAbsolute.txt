@@ -44,15 +44,10 @@ C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\MultipleQualifier
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\MQTTnet.pri.xml
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\ProjectArchitectures.txt
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636885238160000000.json
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\HomePage.xbf
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\SettingsPage.xbf
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.g.i.cs
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.g.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.g.i.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.g.cs
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.xaml
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.xaml
-C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\HomePage.xbf
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\SettingsPage.xbf
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\LoginPage.g.i.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\LoginPage.g.cs
@@ -74,3 +69,8 @@ C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\Chat
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.g.cs
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.xaml
 C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\UserControls\ChatroomMessageControl.xbf
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\ChatPage.xbf
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\ChatPage.g.i.cs
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\ChatPage.g.cs
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\ChatPage.xaml
+C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\obj\x86\Debug\Pages\ChatPage.xbf

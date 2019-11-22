@@ -18,8 +18,8 @@
         <NavigationView.MenuItems>
             
             <!--#region Home-->
-            <NavigationViewItem
-                Tag="home#page"
+            <NavigationViewItem x:ConnectionId='3'
+                x:Name="_firstItem"
                 Icon="Home"
                 Content="Home"/>
             <!--#endregion-->
@@ -28,7 +28,7 @@
         <!--#endregion-->
         
         <!--#region Content frame-->
-        <Frame x:ConnectionId='3' x:Name="_contentFrame">
+        <Frame x:ConnectionId='4' x:Name="_contentFrame">
             <Frame.ContentTransitions>
                 <TransitionCollection>
                     <EntranceThemeTransition/>

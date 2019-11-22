@@ -42,18 +42,20 @@
       <RootProperty Name="Fill" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="CornerRadius" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Spacing" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
       <RootProperty Name="ChildrenTransitions" />
       <RootProperty Name="MinWidth" />
       <RootProperty Name="Background" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="CornerRadius" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Children" />
+      <RootProperty Name="ContextFlyout" />
       <RootProperty Name="Orientation" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Style" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Panel">
@@ -118,15 +120,19 @@
     <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition">
       <RootProperty Name="IsStaggeringEnabled" />
     </RootType>
-    <RootType FullName="ChatroomUWP.Pages.HomePage" />
+    <RootType FullName="ChatroomUWP.Pages.ChatPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Text" />
       <RootProperty Name="Style" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Opacity" />
       <RootProperty Name="Margin" />
       <RootProperty Name="TextWrapping" />
-      <RootProperty Name="Opacity" />
       <RootProperty Name="FontStyle" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
+      <RootProperty Name="Placement" />
+      <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="ChatroomUWP.Pages.LoginPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
@@ -138,7 +144,6 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationViewItem">
-      <RootProperty Name="Tag" />
       <RootProperty Name="Icon" />
       <RootProperty Name="Content" />
     </RootType>
@@ -146,6 +151,11 @@
       <RootProperty Name="ContentTransitions" />
     </RootType>
     <RootType FullName="ChatroomUWP.Pages.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Tag" />
+      <RootProperty Name="GroupName" />
+    </RootType>
     <RootType FullName="ChatroomUWP.Pages.SettingsPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="MaxWidth" />
