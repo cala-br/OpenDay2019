@@ -3,6 +3,15 @@
 The chatroom will use a local MQTT server (mosquitto) in order to handle the messages.
 Messages will be transported using JSON, as a way to keep them platform independent.
 
+
+# DNS resolution
+
+| Hostname | URL |
+| -------- | --- |
+| Broker | [broker.fermi.mo.it]() |
+| Registration server | [register-server.fermi.mo.it:40000](http://register-server.fermi.mo.it:40000) |
+| Chatroom Web | [chatroom.fermi.mo.it](http://chatroom.fermi.mo.it) |
+
 # Topics
 
 The MQTT topics used for the communication.
@@ -13,6 +22,7 @@ The MQTT topics used for the communication.
 | [chatroom/usernames](#Username-registration-message) | The topic that will contain the list of used usernames. The message must be retained. This is managed by the subscription-manager server |
 | [chatroom/private-messages/recipient](#Direct-messages) | The topic used when sending direct messages. **/recipient** is the recipient's username. |
 
+
 # Server requests
 
 The requests that the subscription-manager server supports.
@@ -20,8 +30,8 @@ The requests that the subscription-manager server supports.
 | Request | Type | Returns | Data | Description |
 | ------- | ---- | ------- | ---- | ----------- |
 | [/deregister](#Registering-username) | POST | 200 | `string` | Deregisters a client, removing it from the usernames list. |
-| [/register](#Deregistering-username) | POST | 200 Done <br> 400 Fail | `string` | **Planned**, registers a client by adding it into the usernames list. |
-| [/getNames](#Getting-usernames) | GET | \["n1", "n2"] |  | Get the list of all currently registered usernames |
+| [/register](#Deregistering-username) | POST | 200 - Done <br> 400 - Username exists | `string` | Registers a client by adding it into the usernames list. |
+| [/getNames](#Getting-usernames) | GET | 200 - `["n1", "n2"]` | `string[]` | Get the list of all currently registered usernames |
 
 # Messages format
 

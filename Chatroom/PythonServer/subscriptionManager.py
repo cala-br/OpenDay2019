@@ -50,13 +50,17 @@ class SubscriptionManager:
     #endregion
 
     #region Register client
-    def registerClient(self, username : str) -> None:
+    def registerClient(self, username : str) -> bool:
         """
         Registers a client.
 
         Parameters
         ----------
             username : str
+
+        Returns
+        -------
+            bool
         """
         if not self.clientExists(username):
             self.usernames\
@@ -110,14 +114,3 @@ class SubscriptionManager:
     #endregion
 
 #endregion
-
-
-#region Main
-def main():
-    sub = SubscriptionManager()
-
-#endregion
-
-
-if __name__ == "__main__":
-    main()

@@ -1,51 +1,115 @@
 import time
-import http.server
-import subscriptionManager
 import json
+import html
+from typing import List
+from http.server import \
+    BaseHTTPRequestHandler, HTTPServer
+    
+from subscriptionManager import \
+    SubscriptionManager
 
 
-HOST_NAME = 'localhost'
-PORT_NUMBER = 40000
-sub = subscriptionManager.SubscriptionManager()
+#region Subscription Handler
+class SubscriptionHandler(BaseHTTPRequestHandler):
 
-class MyHandler(http.server.BaseHTTPRequestHandler):
+    #region Static fields
+
+    subscriptionManager = SubscriptionManager()
+
+    #endregion
+
+
+    #region Get 
     def do_GET(self):
-        """Respond to a GET request."""
+        """
+        Responds to
+        -----------
+            '/getNames'
+                200 - List[str]
+        """
+        sm = \
+            SubscriptionHandler.subscriptionManager
+
         print(self.path)
         if self.path == '/getNames':
-            data = json.dumps(sub.usernames).encode()
+            data = json\
+                .dumps(sm.usernames)\
+                .encode()
 
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(data)
+    #endregion
 
+    #region Post
     def do_POST(self):
-        """Respond to a GET request."""
-        user = self.rfile.read(int(self.headers['Content-Length'])).decode()
+        """
+        Responds to
+        -----------
+            '/deregister', with param 'user'
+                200 
+
+            '/register', with param 'user'
+                200 -> Done
+                400 -> Username exists
+        """
+        sm = \
+            SubscriptionHandler.subscriptionManager
+
+        user = self\
+            .rfile\
+            .read(int(self.headers['Content-Length']))\
+            .decode()
+
+        user = html.escape(user)
 
         if self.path == '/deregister':
-            sub.deregisterClient(user)
+            sm.deregisterClient(user)
             self.send_response(200)
+
         elif self.path == '/register':
-            if sub.registerClient(user):
-                self.send_response(200)
-            else:
-                self.send_response(400)
+            registerResponse = \
+                sm.registerClient(user)
+
+            self.send_response(
+                200 if registerResponse else 400)
         
         self.send_header("Content-type", "text/html")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
+    #endregion
+
+#endregion
+
+#region Main
+def main():
+    """
+    Initializes the server.
+    """
+    HOST_NAME   = ''
+    PORT_NUMBER = 40000
+
+    server = HTTPServer(
+        (HOST_NAME, PORT_NUMBER), 
+        SubscriptionHandler)
+
+    try:
+        print(
+            f"{time.asctime()} -> Server Starts - '{HOST_NAME}', {PORT_NUMBER}")
+
+        server.serve_forever()
+
+    except:    
+        server.server_close()
+        print(
+            f"{time.asctime()} -> Server Stops - '{HOST_NAME}', {PORT_NUMBER}")
+#endregion
 
 
 if __name__ == '__main__':
-    server_class = http.server.HTTPServer
-    httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)
-    print (time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER))
     try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
+        main()
+    except:
         pass
-    httpd.server_close()
-    print (time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER))
