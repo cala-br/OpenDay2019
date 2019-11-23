@@ -74,7 +74,7 @@ namespace ChatroomUWP.Classes
         /// The server's hostname.
         /// </summary>
         public const string
-            SERVER_HOSTNAME = "broker.hivemq.com"; 
+            SERVER_HOSTNAME = "broker.fermi.mo.it"; 
 
         public const string
             PRIVATE_ROOMS_TOPIC_PREFIX = "chatroom/private-messages";
@@ -83,7 +83,7 @@ namespace ChatroomUWP.Classes
             GENERAL_ROOM_TOPIC = "chatroom";
 
         public const string
-            REGISTRATION_SERVER = "registration-server.fermi.mo.it:40000";
+            REGISTRATION_SERVER = "http://registration-server.fermi.mo.it:40000";
 
         #endregion
 
@@ -257,7 +257,7 @@ namespace ChatroomUWP.Classes
                     msg.Topic,
                     chatMsg);
 
-                ShowNotification(chatMsg);
+                //ShowNotification(chatMsg);
 
                 await ChatroomMessagesManager
                     .Dispatch(msg.Topic, chatMsg);
@@ -270,16 +270,16 @@ namespace ChatroomUWP.Classes
         private void ShowNotification(ChatroomMessage chatMsg)
         {
             var notificationContent = new XmlDocument();
-            notificationContent.LoadXml($@"
-                <toast displayTimestamp={$"\"{chatMsg.Timestamp}\""}>
-                    <visual>
-                        <binding template={"\"ToastGeneric\""}>
-                            <text>{$"\"{chatMsg.Username}\""}</text>
-                            <text>{$"\"{chatMsg.Contents}\""}</text>
-                        </binding>
-                    </visual>
-                    <audio src={"\"ms-winsoundevent:Notification.Reminder\""}/>
-                </toast>");
+            notificationContent.LoadXml(
+                $"<toast displayTimestamp=\"{chatMsg.Timestamp}\">" +
+                    "<visual>" +
+                        "<binding template=\"ToastGeneric\"}>" + 
+                            $"<text>\"{chatMsg.Username}\"</text>" +
+                            $"<text>\"{chatMsg.Contents}\"</text>" +
+                        "</binding>" +
+                    "</visual>" +
+                    "<audio src=\"ms-winsoundevent:Notification.Reminder\"/>" +
+                "</toast>");
 
             _notifier.Show(new ToastNotification(notificationContent));
         }
@@ -329,7 +329,7 @@ namespace ChatroomUWP.Classes
 
                     HttpResponseMessage resp = await
                         _httpClient.PostAsync(
-                            REGISTRATION_SERVER, 
+                            $"{ REGISTRATION_SERVER}/register", 
                             content, 
                             _connectionTokenSource.Token);
 
@@ -339,7 +339,7 @@ namespace ChatroomUWP.Classes
                     return resp.IsSuccessStatusCode;
                 }
             }
-            catch
+            catch (Exception e)
             {
                 ConnectionError?.Invoke();
                 return false;
@@ -371,7 +371,7 @@ namespace ChatroomUWP.Classes
 
                     await _httpClient
                         .PostAsync(
-                            REGISTRATION_SERVER, 
+                            $"{REGISTRATION_SERVER}/deregister", 
                             content,
                             _connectionTokenSource.Token);
                 }

@@ -1,5 +1,5 @@
-const host = "broker.hivemq.com";
-const port = 8000;
+const host = "broker.fermi.mo.it";
+const port = 9001;
 
 var client       = null;
 var privClient   = null;
@@ -14,7 +14,7 @@ $(document).ready(() => {
 
     client.connect({
         onSuccess: () => {
-            client.subscribe("messori/fermi/chatroom");
+            client.subscribe("chatroom");
             client.onMessageArrived = (message) => {
                 
                 let data = JSON.parse(message.payloadString);
@@ -88,10 +88,10 @@ function sendMessage()
     {  
         let topic = "";
         if(currentContainer == '#globalContainer')
-            topic = "messori/fermi/chatroom";
+            topic = "chatroom";
         else
         {
-            topic = `messori/fermi/chatroom/private-messages/${currentContainer.replace("DirectContainer", "").replace("#", "")}`
+            topic = `chatroom/private-messages/${currentContainer.replace("DirectContainer", "").replace("#", "")}`
             
             let data = json;
             let date = new Date(data.timestamp);
@@ -140,7 +140,7 @@ function selectUsername()
     $.ajax(
     {
         method: 'POST',
-        url   : 'http://localhost:40000/register',
+        url   : 'http://registration-server.fermi.mo.it:40000/register',
         data  : name
     })
     .done(_ => {
@@ -152,7 +152,7 @@ function selectUsername()
 
         privClient.connect({
             onSuccess: () => {
-                privClient.subscribe("messori/fermi/chatroom/private-messages/" + username);
+                privClient.subscribe("chatroom/private-messages/" + username);
                 privClient.onMessageArrived = (message) => {
 
                     let data = JSON.parse(message.payloadString);
@@ -231,7 +231,7 @@ window.addEventListener("unload", (e) =>
     if(username)
     {
         navigator.sendBeacon(
-            'http://localhost:40000/deregister', 
+            'http://registration-server.fermi.mo.it:40000/deregister', 
             username
         );
     }
@@ -245,7 +245,7 @@ function getUsernames()
     $.ajax(
     {
         method: 'GET',
-        url   : 'http://localhost:40000/getNames'
+        url   : 'http://registration-server.fermi.mo.it:40000/getNames'
     })
     .done((msg) => { 
 

@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>DF28005044E1A83335A22A2DC0EAFEF3FC14556EE05ED515A01379D9232F0A67</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>8A4957ABA67DA4A29E5152353586798BAD1556C7E185C8612EA46AAED72AEEEE</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>6a3b3203-2403-48c6-93c8-d4798ce0a776_1.0.0.0_x86__wvbdtds52vrna</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>6a3b3203-2403-48c6-93c8-d4798ce0a776_wvbdtds52vrna!App</RegisteredUserModeAppID>
     <RegisteredPackageID>6a3b3203-2403-48c6-93c8-d4798ce0a776</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-23T09:51:45.792</Modified>
+      <Modified>2019-11-23T15:38:48.773</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\ChatroomUWP.exe">
       <PackagePath>entrypoint\ChatroomUWP.exe</PackagePath>
-      <Modified>2019-11-23T09:51:45.037</Modified>
+      <Modified>2019-11-23T15:38:48.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Utente\.nuget\packages\microsoft.bcl.asyncinterfaces\1.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
       <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
@@ -355,31 +355,31 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.458</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Dictionaries\Styles.xbf">
       <PackagePath>Dictionaries\Styles.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.457</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\ChatPage.xbf">
       <PackagePath>Pages\ChatPage.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.458</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\LoginPage.xbf">
       <PackagePath>Pages\LoginPage.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\MainPage.xbf">
       <PackagePath>Pages\MainPage.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\SettingsPage.xbf">
       <PackagePath>Pages\SettingsPage.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.460</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatroomMessageControl.xbf">
       <PackagePath>UserControls\ChatroomMessageControl.xbf</PackagePath>
-      <Modified>2019-11-23T09:51:44.736</Modified>
+      <Modified>2019-11-23T15:22:02.460</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -387,11 +387,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-11-23T09:14:20.798</Modified>
+      <Modified>2019-11-23T15:03:47.750</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Core\ChatroomUWP.exe">
       <PackagePath>ChatroomUWP.exe</PackagePath>
-      <Modified>2019-11-23T09:51:45.792</Modified>
+      <Modified>2019-11-23T15:38:48.751</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

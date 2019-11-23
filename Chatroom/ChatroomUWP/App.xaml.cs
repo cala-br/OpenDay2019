@@ -92,16 +92,15 @@ namespace ChatroomUWP
         /// </summary>
         /// <param name="sender">Origine della richiesta di sospensione.</param>
         /// <param name="e">Dettagli relativi alla richiesta di sospensione.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
             var client = 
                 ChatroomClient.GetInstance();
 
-            client
-                .DeregisterUsernameAsync()
-                .Wait();
+            await client
+                .DeregisterUsernameAsync();
 
             client.Dispose();
             deferral.Complete();

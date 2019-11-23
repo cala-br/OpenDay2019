@@ -31,6 +31,7 @@ class SubscriptionHandler(BaseHTTPRequestHandler):
             SubscriptionHandler.subscriptionManager
 
         print(self.path)
+        data = b'["error"]'
         if self.path == '/getNames':
             data = json\
                 .dumps(sm.usernames)\

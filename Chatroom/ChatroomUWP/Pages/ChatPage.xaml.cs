@@ -58,7 +58,7 @@ namespace ChatroomUWP.Pages
         /// <param name="e">Contains the sender's topic</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Topic  = e.Content as string;
+            Topic  = e.Parameter as string;
             Sender = Topic switch
             {
                 ChatroomClient.GENERAL_ROOM_TOPIC 
@@ -69,6 +69,8 @@ namespace ChatroomUWP.Pages
 
             List<ChatroomMessage> messages =
                 ChatroomMessagesManager.GetMessages(Topic);
+
+            if (messages == null) return;
 
             messages.ForEach(msg =>
             {

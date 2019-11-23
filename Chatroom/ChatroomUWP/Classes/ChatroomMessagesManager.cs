@@ -84,13 +84,18 @@ namespace ChatroomUWP.Classes
         /// Checks if a section exists based on its tag.
         /// </summary>
         /// <param name="topic">The section's tag.</param>
-        private static bool SectionExists(string topic)
+        private async static Task<bool> SectionExists(string topic)
         {
-            NavigationViewItem section = _navView
-                .MenuItems
-                .Cast<NavigationViewItem>()
-                .FirstOrDefault(i =>
-                    (string)i.Tag == topic);
+            NavigationViewItem section = default;
+
+            await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                section = _navView
+                    .MenuItems
+                    .Cast<NavigationViewItem>()
+                    .FirstOrDefault(i =>
+                        (string)i.Tag == topic);
+            });
 
             return section != default;
         }
@@ -105,7 +110,7 @@ namespace ChatroomUWP.Classes
             ChatroomMessage message
         )
         {
-            if (SectionExists(topic))
+            if (await SectionExists(topic))
                 return SectionCreationInfo.Existed;
 
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>
