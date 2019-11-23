@@ -1,21 +1,13 @@
 ﻿using ChatroomUWP.Classes;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Text.RegularExpressions;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Il modello di elemento Pagina vuota è documentato all'indirizzo https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ChatroomUWP.Pages
 {
@@ -37,27 +29,27 @@ namespace ChatroomUWP.Pages
             InitializeComponent();
 
             _client = ChatroomClient.GetInstance();
-            _client.DuplicateName   += DuplicateNameHandler;
-            _client.Connected       += ConnectedHandler;
+            _client.DuplicateName += DuplicateNameHandler;
+            _client.Connected += ConnectedHandler;
             _client.ConnectionError += ConnectionErrorHandler;
         }
         #endregion
 
 
-        #region Try login
+        #region Try join
         /// <summary>
-        /// Tries to login.
+        /// Tries to join the chat.
         /// </summary>
-        private async void TryLogin(object sender, RoutedEventArgs e)
+        private async void TryJoin(object sender, RoutedEventArgs e)
         {
-            var username  = _usernameBox.Text;
-            var isInvalid =
+            string username = _usernameBox.Text;
+            bool isInvalid  =
                 string.IsNullOrWhiteSpace(username);
 
             if (!isInvalid)
             {
                 _usernameBox.IsEnabled = false;
-                await _client.Begin(username);
+                await _client.Join(username);
             }
         }
         #endregion
@@ -69,8 +61,16 @@ namespace ChatroomUWP.Pages
         /// </summary>
         private void ShowError(string error)
         {
-            _errorFlyout.ShowAt(_contentPanel);
-            _errorTextBlock.Text = error;
+            new Flyout
+            {
+                Content = new TextBlock
+                {
+                    Text    = error,
+                    Opacity = 0.8,
+                    Style   = Resources["CaptionTextBlockStyle"] as Style
+                }
+            }
+            .ShowAt(_contentPanel);
         }
         #endregion
 
@@ -114,7 +114,7 @@ namespace ChatroomUWP.Pages
                 MainPage
                     .NavigationFrame
                     .Navigate(
-                        typeof(ChatPage), 
+                        typeof(ChatPage),
                         ChatroomClient.GENERAL_ROOM_TOPIC);
             });
         }
@@ -127,9 +127,24 @@ namespace ChatroomUWP.Pages
         /// </summary>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            _client.DuplicateName   -= DuplicateNameHandler;
-            _client.Connected       -= ConnectedHandler;
+            _client.DuplicateName -= DuplicateNameHandler;
+            _client.Connected -= ConnectedHandler;
             _client.ConnectionError -= ConnectionErrorHandler;
+        }
+        #endregion
+
+
+        #region Username box - key up
+        /// <summary>
+        /// Enables or disables the login button.
+        /// </summary>
+        private void UsernameBoxKeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                TryJoin(null, null);
+
+            _joinButton.IsEnabled =
+                Regex.IsMatch(_usernameBox.Text, @".+");
         }
         #endregion
     }

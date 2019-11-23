@@ -12,11 +12,19 @@
         x:Name="_navView"
         OpenPaneLength="220"
         SelectionChanged="DisplaySelectedPage"
-        SelectedItem="{x:Bind _navView.MenuItems[0]}">
-        
+        SelectedItem="{x:Bind _firstItem}">
+
+        <!--#region User search box-->
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox 
+                x:Name="_suggestBox"
+                QueryIcon="Find"/>
+        </NavigationView.AutoSuggestBox>
+        <!--#endregion-->
+
         <!--#region Menu items-->
         <NavigationView.MenuItems>
-            
+
             <!--#region Home-->
             <NavigationViewItem
                 x:Name="_firstItem"

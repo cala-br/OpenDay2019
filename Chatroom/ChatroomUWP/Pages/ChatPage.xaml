@@ -59,6 +59,7 @@
             <!--#region Send box-->
             <TextBox
                 x:Name="_sendBox"
+                KeyUp="SendBoxKeyTyped"
                 CornerRadius="12 0 0 12"
                 TextWrapping="Wrap"
                 IsSpellCheckEnabled="False"

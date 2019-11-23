@@ -16,6 +16,7 @@
       <RootProperty Name="KeyboardAccelerators" />
       <RootProperty Name="Style" />
       <RootProperty Name="PlaceholderText" />
+      <RootEvent Name="KeyUp" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="CornerRadius" />
@@ -27,6 +28,7 @@
       <RootProperty Name="Style" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="Content" />
+      <RootProperty Name="IsEnabled" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
@@ -53,7 +55,6 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Children" />
-      <RootProperty Name="ContextFlyout" />
       <RootProperty Name="Orientation" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Style" />
@@ -125,24 +126,24 @@
       <RootProperty Name="Text" />
       <RootProperty Name="Style" />
       <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Opacity" />
       <RootProperty Name="Margin" />
       <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Opacity" />
       <RootProperty Name="FontStyle" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
-      <RootProperty Name="Placement" />
-      <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="ChatroomUWP.Pages.LoginPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
       <RootProperty Name="OpenPaneLength" />
       <RootProperty Name="SelectedItem" />
+      <RootProperty Name="AutoSuggestBox" />
       <RootProperty Name="MenuItems" />
       <RootProperty Name="Content" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
+      <RootProperty Name="QueryIcon" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationViewItem">
       <RootProperty Name="Icon" />
       <RootProperty Name="Content" />

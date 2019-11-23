@@ -1,21 +1,16 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
-using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using MQTTnet.Client.Publishing;
-using MQTTnet.Client.Receiving;
 using MQTTnet.Client.Subscribing;
-using MQTTnet.Protocol;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 
 namespace ChatroomUWP.Classes
 {
@@ -43,15 +38,16 @@ namespace ChatroomUWP.Classes
 
         #region Private fields
 
-        private string             _clientId;
-        private IMqttClient        _mqttClient;
+        private string _clientId;
+        private IMqttClient _mqttClient;
         private IMqttClientOptions _mqttClientOptions;
-
+        private bool _canReconnect;
         private CancellationTokenSource _connectionTokenSource;
 
         private HttpClient _httpClient;
 
-        private bool _canReconnect;
+        private static ToastNotifier _notifier =
+            ToastNotificationManager.CreateToastNotifier();
 
         #endregion
 
@@ -77,17 +73,17 @@ namespace ChatroomUWP.Classes
         /// <summary>
         /// The server's hostname.
         /// </summary>
-        public const string 
-            SERVER_HOSTNAME = "broker.hivemq.com"; //"localhost";
+        public const string
+            SERVER_HOSTNAME = "broker.hivemq.com"; 
 
         public const string
-            USERNAMES_TOPIC = "messori/fermi/chatroom/usernames"; //"chatroom/usernames";
+            PRIVATE_ROOMS_TOPIC_PREFIX = "chatroom/private-messages";
 
         public const string
-            GENERAL_ROOM_TOPIC = "messori/fermi/chatroom"; //"chatroom/";
+            GENERAL_ROOM_TOPIC = "chatroom";
 
-        public const string 
-            REGISTRATION_SERVER = "";
+        public const string
+            REGISTRATION_SERVER = "registration-server.fermi.mo.it:40000";
 
         #endregion
 
@@ -132,9 +128,9 @@ namespace ChatroomUWP.Classes
         /// starts the connection if the given username
         /// is not duplicated.
         /// </summary>
-        public async Task Begin(string username)
+        public async Task Join(string username)
         {
-            _clientId     = username;
+            _clientId = username;
             _canReconnect = true;
 
             if (!await RegisterUsernameAsync(username))
@@ -151,7 +147,7 @@ namespace ChatroomUWP.Classes
         /// </summary>
         private async void InitializeMqttClientAsync()
         {
-            var factory = new MqttFactory();
+            MqttFactory factory = new MqttFactory();
             _mqttClient = factory
                 .CreateMqttClient()
                 .UseDisconnectedHandler(ClientDisconnectedHandler)
@@ -182,13 +178,12 @@ namespace ChatroomUWP.Classes
                 (
                     _mqttClientOptions,
                     _connectionTokenSource.Token
-                ) 
+                )
                 .ContinueWith(async _ => // Subscribing
                 {
-                    var subOpts = new MqttClientSubscribeOptionsBuilder()
+                    MqttClientSubscribeOptions subOpts = new MqttClientSubscribeOptionsBuilder()
                         .WithTopicFilter(GENERAL_ROOM_TOPIC)
-                        .WithTopicFilter($"chatroom/{_clientId}")
-                        .WithTopicFilter(USERNAMES_TOPIC)
+                        .WithTopicFilter($"{PRIVATE_ROOMS_TOPIC_PREFIX}/{_clientId}")
                         .Build();
 
                     await _mqttClient.SubscribeAsync(
@@ -220,7 +215,7 @@ namespace ChatroomUWP.Classes
             }
             else ConnectionError?.Invoke();
 
-            _connectionTokenSource = 
+            _connectionTokenSource =
                 new CancellationTokenSource();
 
             using (_connectionTokenSource)
@@ -240,32 +235,53 @@ namespace ChatroomUWP.Classes
         /// </summary>
         private async void MessageReceivedHandler(MqttApplicationMessageReceivedEventArgs e)
         {
-            var msg = e.ApplicationMessage;
+            MqttApplicationMessage msg = e.ApplicationMessage;
 
             try
             {
-                var chatMsg = 
+                ChatroomMessage chatMsg =
                     JsonSerializer.Deserialize<ChatroomMessage>(
                         msg.Payload, new JsonSerializerOptions
                         {
                             PropertyNameCaseInsensitive = true
                         });
 
-                var isInvalid =
+                bool isInvalid =
                     string.IsNullOrWhiteSpace(chatMsg.Username) ||
                     string.IsNullOrWhiteSpace(chatMsg.Contents);
 
-                if (isInvalid) 
+                if (isInvalid)
                     throw new JsonException();
 
                 MessageReceived?.Invoke(
                     msg.Topic,
                     chatMsg);
 
+                ShowNotification(chatMsg);
+
                 await ChatroomMessagesManager
                     .Dispatch(msg.Topic, chatMsg);
             }
             catch (JsonException) { /*Bad message*/ }
+        }
+        #endregion
+
+        #region Show notification
+        private void ShowNotification(ChatroomMessage chatMsg)
+        {
+            var notificationContent = new XmlDocument();
+            notificationContent.LoadXml($@"
+                <toast displayTimestamp={$"\"{chatMsg.Timestamp}\""}>
+                    <visual>
+                        <binding template={"\"ToastGeneric\""}>
+                            <text>{$"\"{chatMsg.Username}\""}</text>
+                            <text>{$"\"{chatMsg.Contents}\""}</text>
+                        </binding>
+                    </visual>
+                    <audio src={"\"ms-winsoundevent:Notification.Reminder\""}/>
+                </toast>");
+
+            _notifier.Show(new ToastNotification(notificationContent));
         }
         #endregion
 
@@ -275,17 +291,17 @@ namespace ChatroomUWP.Classes
         /// Publishes a message asynchronously.
         /// </summary>
         public async Task<MqttClientPublishResult> PublishAsync(
-            string          topic, 
+            string topic,
             ChatroomMessage message)
         {
             return await _mqttClient.PublishAsync(new MqttApplicationMessage
             {
-                Topic   = topic,
+                Topic = topic,
                 Payload = JsonSerializer
                     .SerializeToUtf8Bytes(new
                     {
-                        username  = _clientId,
-                        contents  = message.Contents,
+                        username = _clientId,
+                        contents = message.Contents,
                         timestamp = message.Timestamp
                     })
             });
@@ -302,22 +318,31 @@ namespace ChatroomUWP.Classes
         {
             _httpClient ??= new HttpClient();
 
-            using var content = 
-                new StringContent(username);
+            _connectionTokenSource = new CancellationTokenSource();
 
             try
             {
-                var resp = await 
-                    _httpClient.PostAsync(REGISTRATION_SERVER, content);
+                using (_connectionTokenSource)
+                {
+                    using StringContent content =
+                        new StringContent(username);
 
-                if (!resp.IsSuccessStatusCode)
-                    DuplicateName?.Invoke();
+                    HttpResponseMessage resp = await
+                        _httpClient.PostAsync(
+                            REGISTRATION_SERVER, 
+                            content, 
+                            _connectionTokenSource.Token);
 
-                return resp.IsSuccessStatusCode;
+                    if (!resp.IsSuccessStatusCode)
+                        DuplicateName?.Invoke();
+
+                    return resp.IsSuccessStatusCode;
+                }
             }
-            catch {
+            catch
+            {
                 ConnectionError?.Invoke();
-                return false; 
+                return false;
             }
         }
         #endregion
@@ -335,24 +360,33 @@ namespace ChatroomUWP.Classes
             if (_mqttClient != null)
                 await _mqttClient.DisconnectAsync();
 
-            using var content = 
-                new StringContent(_clientId);
+            _connectionTokenSource = new CancellationTokenSource();
 
             try
             {
-                await _httpClient
-                    .PostAsync(REGISTRATION_SERVER, content);
+                using (_connectionTokenSource)
+                {
+                    using StringContent content =
+                        new StringContent(_clientId);
+
+                    await _httpClient
+                        .PostAsync(
+                            REGISTRATION_SERVER, 
+                            content,
+                            _connectionTokenSource.Token);
+                }
             }
-            catch {
+            catch
+            {
                 ConnectionError?.Invoke();
-                return; 
+                return;
             }
         }
         #endregion
 
 
         #region IDisposable Support
-        private bool _disposedValue = false; 
+        private bool _disposedValue = false;
 
         protected virtual async void Dispose(bool disposing)
         {
@@ -360,9 +394,9 @@ namespace ChatroomUWP.Classes
             {
                 _instance = null;
 
-                if (disposing) 
+                if (disposing)
                 {
-                    _clientId          = null;
+                    _clientId = null;
                     _mqttClientOptions = null;
                 }
 
@@ -371,7 +405,7 @@ namespace ChatroomUWP.Classes
 
                 if (_mqttClient != null)
                 {
-                    using (_mqttClient) 
+                    using (_mqttClient)
                         await _mqttClient.DisconnectAsync();
                 }
 

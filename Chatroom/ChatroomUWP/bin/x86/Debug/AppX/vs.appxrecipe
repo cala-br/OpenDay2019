@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>CC3CFA686F404D2E1DBB57B866566DEA5280A24FB1A14259A1C0E155B4AF5FEB</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>DF28005044E1A83335A22A2DC0EAFEF3FC14556EE05ED515A01379D9232F0A67</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>6a3b3203-2403-48c6-93c8-d4798ce0a776_1.0.0.0_x86__wvbdtds52vrna</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>6a3b3203-2403-48c6-93c8-d4798ce0a776_wvbdtds52vrna!App</RegisteredUserModeAppID>
     <RegisteredPackageID>6a3b3203-2403-48c6-93c8-d4798ce0a776</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-22T21:35:24.939</Modified>
+      <Modified>2019-11-23T09:51:45.792</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\ChatroomUWP.exe">
       <PackagePath>entrypoint\ChatroomUWP.exe</PackagePath>
-      <Modified>2019-11-22T21:35:24.380</Modified>
+      <Modified>2019-11-23T09:51:45.037</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Utente\.nuget\packages\microsoft.bcl.asyncinterfaces\1.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
       <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
@@ -66,9 +66,255 @@
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2019-03-18T16:36:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2019-11-14T22:40:17.093</Modified>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\BadgeLogo.scale-100.png">
+      <PackagePath>Assets\BadgeLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.985</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\BadgeLogo.scale-125.png">
+      <PackagePath>Assets\BadgeLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.998</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\BadgeLogo.scale-150.png">
+      <PackagePath>Assets\BadgeLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.013</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\BadgeLogo.scale-200.png">
+      <PackagePath>Assets\BadgeLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.028</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\BadgeLogo.scale-400.png">
+      <PackagePath>Assets\BadgeLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.053</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.531</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.565</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.607</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.910</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:26.991</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.024</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.044</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.111</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.329</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SplashScreen.scale-125.png">
+      <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.380</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SplashScreen.scale-150.png">
+      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.450</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.958</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.136</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.164</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.189</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.285</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.155</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.168</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.288</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.181</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.196</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.077</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.142</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.106</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.118</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.924</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.scale-125.png">
+      <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.937</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.scale-150.png">
+      <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.950</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.991</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.004</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.016</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.065</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.028</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:28.041</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.068</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.scale-125.png">
+      <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.081</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.scale-150.png">
+      <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.095</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.109</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:29.130</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.305</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.328</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.354</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-11-23T09:13:27.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -77,64 +323,63 @@
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
+      <Modified>2019-11-23T09:13:28.560</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
+      <Modified>2019-11-23T09:13:27.220</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
+      <Modified>2019-11-23T09:13:27.964</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\StoreLogo.png">
-      <PackagePath>Assets\StoreLogo.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
+      <Modified>2019-11-23T09:13:28.090</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-10-01T12:29:42.220</Modified>
+      <Modified>2019-11-23T09:13:27.392</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
+      <Modified>2019-11-14T22:40:17.093</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\ChatroomUWP.xr.xml">
       <PackagePath>ChatroomUWP.xr.xml</PackagePath>
-      <Modified>2019-11-22T21:35:24.123</Modified>
+      <Modified>2019-11-23T09:49:08.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.153</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Dictionaries\Styles.xbf">
       <PackagePath>Dictionaries\Styles.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.152</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\ChatPage.xbf">
       <PackagePath>Pages\ChatPage.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.154</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\LoginPage.xbf">
       <PackagePath>Pages\LoginPage.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.154</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\MainPage.xbf">
       <PackagePath>Pages\MainPage.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.155</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Pages\SettingsPage.xbf">
       <PackagePath>Pages\SettingsPage.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.156</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\UserControls\ChatroomMessageControl.xbf">
       <PackagePath>UserControls\ChatroomMessageControl.xbf</PackagePath>
-      <Modified>2019-11-22T21:35:24.156</Modified>
+      <Modified>2019-11-23T09:51:44.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -142,11 +387,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-11-22T21:26:18.634</Modified>
+      <Modified>2019-11-23T09:14:20.798</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Condivisi\5H\OpenDay2019\Chatroom\ChatroomUWP\bin\x86\Debug\Core\ChatroomUWP.exe">
       <PackagePath>ChatroomUWP.exe</PackagePath>
-      <Modified>2019-11-22T21:35:24.933</Modified>
+      <Modified>2019-11-23T09:51:45.792</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

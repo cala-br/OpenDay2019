@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -21,11 +20,11 @@ namespace ChatroomUWP.Classes
     {
         #region Fields
 
-        private static NavigationView 
+        private static NavigationView
             _navView = MainPage.NavigationView;
 
         private static Dictionary<
-            string, 
+            string,
             List<ChatroomMessage>> _messages = new Dictionary<string, List<ChatroomMessage>>();
 
         #endregion
@@ -54,7 +53,7 @@ namespace ChatroomUWP.Classes
         /// </summary>
         public static async Task Dispatch(string topic, ChatroomMessage message)
         {
-            var si = // Section Info
+            SectionCreationInfo si = // Section Info
                 await CreateSectionAsync(topic, message);
 
             if (si == SectionCreationInfo.Created)
@@ -87,7 +86,7 @@ namespace ChatroomUWP.Classes
         /// <param name="topic">The section's tag.</param>
         private static bool SectionExists(string topic)
         {
-            var section = _navView
+            NavigationViewItem section = _navView
                 .MenuItems
                 .Cast<NavigationViewItem>()
                 .FirstOrDefault(i =>
@@ -102,11 +101,11 @@ namespace ChatroomUWP.Classes
         /// Creates a new section from a message.
         /// </summary>
         private static async Task<SectionCreationInfo> CreateSectionAsync(
-            string          topic, 
+            string topic,
             ChatroomMessage message
         )
         {
-            if (SectionExists(topic)) 
+            if (SectionExists(topic))
                 return SectionCreationInfo.Existed;
 
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.Normal, () =>

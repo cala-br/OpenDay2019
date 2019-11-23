@@ -31,7 +31,10 @@ class SubscriptionManager:
     #endregion
 
     #region Store usernames
-    def storeUsernames(self, client : MQTTClient, data   : Any, msg    : MQTTMessage) -> None:
+    def storeUsernames(self, 
+        client : MQTTClient, 
+        data   : Any, 
+        msg    : MQTTMessage) -> None:
         """
         Stores the usernames. 
         Bound to the client's on_message event.

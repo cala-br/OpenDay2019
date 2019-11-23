@@ -12,13 +12,21 @@
         x:Name="_navView"
         OpenPaneLength="220"
                                               
-                                                     >
-        
+                                          >
+
+        <!--#region User search box-->
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:ConnectionId='3' 
+                x:Name="_suggestBox"
+                QueryIcon="Find"/>
+        </NavigationView.AutoSuggestBox>
+        <!--#endregion-->
+
         <!--#region Menu items-->
         <NavigationView.MenuItems>
-            
+
             <!--#region Home-->
-            <NavigationViewItem x:ConnectionId='3'
+            <NavigationViewItem x:ConnectionId='4'
                 x:Name="_firstItem"
                 Icon="Home"
                 Content="Home"/>
@@ -28,7 +36,7 @@
         <!--#endregion-->
         
         <!--#region Content frame-->
-        <Frame x:ConnectionId='4' x:Name="_contentFrame">
+        <Frame x:ConnectionId='5' x:Name="_contentFrame">
             <Frame.ContentTransitions>
                 <TransitionCollection>
                     <EntranceThemeTransition/>

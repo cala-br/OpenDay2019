@@ -3,6 +3,7 @@ using ChatroomUWP.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -128,6 +129,17 @@ namespace ChatroomUWP.Pages
         #endregion
 
 
+        #region Send box - key typed
+        /// <summary>
+        /// Enables or disables the send button.
+        /// </summary>
+        private void SendBoxKeyTyped(object sender, KeyRoutedEventArgs e)
+        {
+            _sendButton.IsEnabled = 
+                Regex.IsMatch(_sendBox.Text, @".+");
+        }
+        #endregion
+
         #region Send box - ctrl + enter pressed
         /// <summary>
         /// Sends the message when ctrl + enter is pressed.
@@ -154,14 +166,14 @@ namespace ChatroomUWP.Pages
 
             ChatroomMessage msg = new ChatroomMessage
             {
-                Contents = text,
+                Contents  = text,
                 Timestamp = DateTime.Now
             };
 
             try
             {
-                await _client.PublishAsync(
-                    ChatroomClient.GENERAL_ROOM_TOPIC, msg);
+                await _client
+                    .PublishAsync(Topic, msg);
             }
             catch { ClientDisconnectedHandler(); }
 

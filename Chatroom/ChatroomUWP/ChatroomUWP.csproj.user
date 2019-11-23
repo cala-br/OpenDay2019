@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</Source>
+    <SmallTileSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</MediumTileSource>
+    <WideTileSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</WideTileSource>
+    <LargeTileSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</LargeTileSource>
+    <AppIconSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</PackageLogoSource>
+    <BadgeLogoSource>C:\Users\Utente\Desktop\Segoe MDL2 Assets Regular - Chat Bubbles.png</BadgeLogoSource>
+  </PropertyGroup>
+</Project>

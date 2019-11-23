@@ -1,18 +1,6 @@
 ﻿using ChatroomUWP.Classes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 
 namespace ChatroomUWP.Pages
@@ -24,7 +12,7 @@ namespace ChatroomUWP.Pages
     {
         #region Private fields
 
-        private ChatroomClient _client = 
+        private ChatroomClient _client =
             ChatroomClient.GetInstance();
 
         #endregion
@@ -63,8 +51,8 @@ namespace ChatroomUWP.Pages
         {
             InitializeComponent();
 
-            _instance      = this;
-            _firstItem.Tag = 
+            _instance = this;
+            _firstItem.Tag =
                 ChatroomClient.GENERAL_ROOM_TOPIC;
         }
         #endregion
@@ -75,7 +63,7 @@ namespace ChatroomUWP.Pages
         /// Displays the requested page.
         /// </summary>
         private void DisplaySelectedPage(
-            NavigationView sender, 
+            NavigationView sender,
             NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
@@ -84,17 +72,17 @@ namespace ChatroomUWP.Pages
                 return;
             }
 
-            var item = args
+            NavigationViewItem item = args
                 .SelectedItem as NavigationViewItem;
 
-            var tag = item
+            string tag = item
                 .Tag as string;
 
             if (tag.StartsWith(ChatroomClient.GENERAL_ROOM_TOPIC))
             {
                 _contentFrame.Navigate(
-                    _client.IsLoggedIn 
-                    ? typeof(ChatPage) 
+                    _client.IsLoggedIn
+                    ? typeof(ChatPage)
                     : typeof(LoginPage), tag);
             }
         }

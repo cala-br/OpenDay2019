@@ -34,6 +34,8 @@
             <!--#region Username box-->
             <TextBox
                 x:Name="_usernameBox"
+                KeyUp="UsernameBoxKeyUp"
+                IsSpellCheckEnabled="False"
                 Style="{ThemeResource RoundTextBoxRevealStyle}"
                 TextWrapping="Wrap"
                 MaxLength="32"
@@ -42,7 +44,9 @@
 
             <!--#region Join button-->
             <Button
-                Click="TryLogin"
+                x:Name="_joinButton"
+                Click="TryJoin"
+                IsEnabled="False"
                 Style="{ThemeResource RoundButtonRevealStyle}">
                 <StackPanel
                     Orientation="Horizontal"
@@ -51,20 +55,6 @@
                     <SymbolIcon Symbol="Send"/>
                 </StackPanel>
             </Button>
-            <!--#endregion-->
-
-
-            <!--#region Error flyout-->
-            <StackPanel.ContextFlyout>
-                <Flyout 
-                    x:Name="_errorFlyout"
-                    Placement="Left">
-                    <TextBlock 
-                        x:Name="_errorTextBlock"
-                        Opacity="0.8"
-                        Style="{ThemeResource CaptionTextBlockStyle}"/>
-                </Flyout>
-            </StackPanel.ContextFlyout>
             <!--#endregion-->
 
         </StackPanel>
